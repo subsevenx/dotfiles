@@ -99,7 +99,3 @@ nodelatest() {
 gen_seed() {
     date +%s%N | cut -b10-19
 }
-
-alias ruby-latest='rubylatest'
-alias python-latest='pythonlatest'
-alias node-latest='nodelatest'
