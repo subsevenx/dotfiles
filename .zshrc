@@ -42,13 +42,12 @@ add-zsh-hook precmd vcs_info
 add-zsh-hook preexec _ts_preexec
 add-zsh-hook precmd  _ts_precmd
 
-
 # syntax/suggestions
 [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main)
-ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan'
+typeset -gA ZSH_HIGHLIGHT_STYLES || true
+ZSH_HIGHLIGHT_STYLES[alias]=fg=cyan
 
 #### PROMPT ####
 PROMPT='%F{magenta}%* %D{%a %b %d}%f %F{green}%B[%~]%b%f %F{cyan}${vcs_info_msg_0_}%f > '
