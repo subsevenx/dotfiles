@@ -30,6 +30,7 @@ alias php-serve='php -S localhost:8000'
 alias bridgetown-serve='bin/bridgetown start'
 alias py-env='[ -d .env ] || python -m venv .venv; source .venv/bin/activate'
 alias sbcl='rlwrap sbcl' #qol for Common Lisp repl
+alias emacs='emacs -nw'
 
 # Software Utilities
 alias sample-song='yt-dlp -f bestaudio[ext=m4a] --embed-thumbnail --add-metadata --verbose'
