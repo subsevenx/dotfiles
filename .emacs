@@ -1,15 +1,10 @@
 (require 'package)
 
-;;; Code: Macro for in-place list update
-(defmacro append-to-list (target suffix)
-  "Append SUFFIX to TARGET in place."
-  `(setq ,target (append ,target ,suffix)))
-
 ;; Package manager
-(append-to-list package-archives
-                '(("melpa" . "http://melpa.org/packages/")
-                  ("melpa-stable" . "http://stable.melpa.org/packages/")
-                  ("org-elpa" . "https://orgmode.org/elpa/")))
+(setq package-archives
+      '(("melpa" . "https://melpa.org/packages/")
+        ("gnu" . "https://elpa.gnu.org/packages/")
+        ("nongnu" . "https://elpa.nongnu.org/packages/")))
 
 (package-initialize)
 
@@ -18,6 +13,7 @@
   (package-install 'use-package))
 
 (require 'use-package)
+
 (setq
  use-package-always-ensure t
  use-package-verbose t)
@@ -94,3 +90,7 @@
   :config
   (setq lsp-prefer-flymake nil
 	lsp-headerline-breadcrumb-mode nil))
+
+(provide '.emacs)
+
+;;; .emacs ends here
