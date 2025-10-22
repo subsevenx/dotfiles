@@ -50,7 +50,9 @@ typeset -gA ZSH_HIGHLIGHT_STYLES || true
 ZSH_HIGHLIGHT_STYLES[alias]=fg=cyan
 
 #### PROMPT ####
-PROMPT='%F{magenta}%* %D{%a %b %d}%f %F{green}%B[%~]%b%f %F{cyan}${vcs_info_msg_0_}%f > '
+precmd() { print -rP "%F{green}%B[%~]%b%f" }
+zstyle ':vcs_info:git:*' formats '%b'
+export PROMPT='%F{magenta}%* %D{%a %b %d}%f %B%b> '
 
 #### ALIASES ####
 [ -f "$HOME/.zsh_aliases" ] && . "$HOME/.zsh_aliases"
