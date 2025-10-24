@@ -30,8 +30,7 @@
 
 ;; Plugins
 (load-file "~/.emacs.d/plugins.el")
-
-
+500
 ;; Make M-x and other mini-buffers sortable, filterable
 (use-package ivy
   :init
@@ -76,6 +75,6 @@
   (setq lsp-prefer-flymake nil
 	lsp-headerline-breadcrumb-mode nil))
 
-(provide '.emacs)
+(provide 'init.el)
 
 ;;; init.el ends here
