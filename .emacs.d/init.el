@@ -1,6 +1,10 @@
-(require 'package)
+;;; package --- Summary
+;;; Commentary: Personal emacs bindings and configs.
+
+;;; Code:
 
 ;; Package manager
+(require 'package)
 (setq package-archives
       '(("melpa" . "https://melpa.org/packages/")
         ("gnu" . "https://elpa.gnu.org/packages/")
@@ -18,10 +22,8 @@
  use-package-always-ensure t
  use-package-verbose t)
 
-;; Shell Env
-(use-package exec-path-from-shell
-  :config
-  (exec-path-from-shell-initialize))
+;; Initialize quality of life settings
+(load-file "~/.emacs.d/qol.el")
 
 ;; Themes
 (use-package doom-themes
@@ -38,18 +40,6 @@
   (doom-themes-visual-bell-config)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
-
-;; QOL
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file 'noerror)
-
-(global-display-line-numbers-mode 1)
-(save-place-mode)
-(global-hl-line-mode t)
-(show-paren-mode t)
-(delete-selection-mode t)
-
-(defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Plugins
 
@@ -99,4 +89,4 @@
 
 (provide '.emacs)
 
-;;; .emacs ends here
+;;; init.el ends here

@@ -5,12 +5,17 @@ REQUIRED_PACKAGES=("fortune" "cowsay" "lolcat")
 #-------------------------------------------------------------
 
 # Lazy and Personal
+# :Shortcuts
 alias please='sudo $(history -p !!)'
 alias ls='ls --group-directories-first --color=auto'
 alias grep='grep --color=auto'
 alias ll='ls -AhlF --group-directories-first'
 alias ..='cd ..'
 alias ...='cd ../..'
+alias cls='clear'
+alias shred='shred -v'
+
+# Mistypes
 alias cs='cd'
 alias xs='cd'
 alias vf='cd'
@@ -18,7 +23,6 @@ alias zd='cd'
 alias xs='cd'
 alias vf='cd'
 alias xd='cd'
-alias cls='clear'
 
 # Shell Utilities
 alias bashexe='source ~/.bashrc'
