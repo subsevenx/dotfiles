@@ -26,22 +26,11 @@
 (load-file "~/.emacs.d/qol.el")
 
 ;; Themes
-(use-package doom-themes
-  :ensure t
-  :custom
-  ;; Global settings (defaults)
-  (Doom-themes-enable-bold t)
-  (doom-themes-enable-italic t)
- 
-  :config
-  (load-theme 'doom-challenger-deep t)
-
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config))
+(load-file "~/.emacs.d/theme.el")
 
 ;; Plugins
+(load-file "~/.emacs.d/plugins.el")
+
 
 ;; Make M-x and other mini-buffers sortable, filterable
 (use-package ivy
