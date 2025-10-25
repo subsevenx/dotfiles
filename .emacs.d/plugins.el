@@ -44,6 +44,6 @@
   (setq lsp-prefer-flymake nil
 	lsp-headerline-breadcrumb-mode nil))
 
-
+;; EOF
 (provide 'plugins.el)
 ;;; plugins.el ends here

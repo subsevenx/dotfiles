@@ -32,6 +32,7 @@
 (load-file "~/.emacs.d/plugins.el")
 
 
+;; EOF
 (provide 'init.el)
 
 ;;; init.el ends here
