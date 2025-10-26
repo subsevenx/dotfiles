@@ -1,3 +1,9 @@
+
+;;; Code:
+
+;; Fullscreen
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 ;; Shell Env
 (use-package exec-path-from-shell
   :config
