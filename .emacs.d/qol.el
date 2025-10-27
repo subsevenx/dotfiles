@@ -2,6 +2,12 @@
 ;;; Code:
 
 ;; Quality of life options
+(set-face-attribute 'default nil :height 220)
+
+(setq inhibit-startup-message t) ; No startup message
+
+(scroll-bar-mode -1) ; Hide vert. scrollbar
+(horizontal-scroll-bar-mode -1) ; Hide horizontal scroll bar
 (add-to-list 'default-frame-alist '(fullscreen . maximized)) ; Set to full screen ASAP
 (global-display-line-numbers-mode t) ; Show line numbers
 (save-place-mode) ; Save cursor place in file exit
