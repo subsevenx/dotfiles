@@ -25,6 +25,9 @@
 ;; Initialize quality of life settings
 (load-file "~/.emacs.d/qol.el")
 
+;; Load MacOS-specific config
+(load-file "~/.emacs.d/mac.el")
+
 ;; Themes
 (load-file "~/.emacs.d/theme.el")
 
