@@ -1,5 +1,11 @@
 ;;; Code:
 
+;; Shell Env
+(use-package exec-path-from-shell
+  :config
+  (when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize)))
+
 ;; Make M-x and other mini-buffers sortable, filterable
 (use-package ivy
   :init

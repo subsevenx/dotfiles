@@ -1,19 +1,18 @@
 
 ;;; Code:
 
-;; Fullscreen
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+;; Quality of life options
+(add-to-list 'default-frame-alist '(fullscreen . maximized)) ; Set to full screen ASAP
+(global-display-line-numbers-mode t) ; Show line numbers
+(save-place-mode) ; Save cursor place in file exit
+(global-hl-line-mode t) ; Highlights current line
+(show-paren-mode t) ; Shows the paired parentheses
+(delete-selection-mode t) ; Deletes text on paste. AKA: normal editor behaviour
 
-;; Shell Env
-(use-package exec-path-from-shell
-  :config
-  (exec-path-from-shell-initialize))
-
-(global-display-line-numbers-mode 1)
-(save-place-mode)
-(global-hl-line-mode t)
-(show-paren-mode t)
-(delete-selection-mode t)
+(dolist (mode '(org-mode-hook
+		term-mode-hook
+		eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
