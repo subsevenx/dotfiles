@@ -9,9 +9,6 @@
   :config
   (exec-path-from-shell-initialize))
 
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file 'noerror)
-
 (global-display-line-numbers-mode 1)
 (save-place-mode)
 (global-hl-line-mode t)

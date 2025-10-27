@@ -22,6 +22,9 @@
  use-package-always-ensure t
  use-package-verbose t)
 
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
+
 ;; Initialize quality of life settings
 (load-file "~/.emacs.d/qol.el")
 
