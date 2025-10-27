@@ -22,6 +22,7 @@
  use-package-always-ensure t
  use-package-verbose t)
 
+;; GUI settings
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 

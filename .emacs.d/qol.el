@@ -9,6 +9,7 @@
 (show-paren-mode t) ; Shows the paired parentheses
 (delete-selection-mode t) ; Deletes text on paste. AKA: normal editor behaviour
 
+; Disables lines in several modes
 (dolist (mode '(org-mode-hook
 		term-mode-hook
 		eshell-mode-hook))
