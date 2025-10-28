@@ -1,12 +1,5 @@
 ;;; Code:
 
-(use-package treesit-auto
-  :custom
-  (treesit-auto-install 'prompt) ;; Prompt install if language is not found
-  :config
-  (treesit-auto-add-to-auto-mode-alist 'all) ;; Use corresponding language
-  (global-treesit-auto-mode))
-
 ;; Doom Bar
 (use-package doom-modeline
   :ensure t
@@ -26,11 +19,19 @@
         ivy-use-virtual-buffers t
         ivy-use-selectable-prompt t))
 
+(use-package ivy-rich
+  :init
+  (ivy-rich-mode 1))
+
 (use-package counsel
   :after ivy
   :init
   (counsel-mode 1)
-  :bind (:map ivy-minibuffer-map))
+  :bind (("M-x" . counsel-M-x)
+	 ("C-x b" . counsel-ibuffer)
+	 ("C-x C-f" . counsel-find-file)
+	 :map ivy-minibuffer-map
+	 ("C-r" . 'counsel-minibuffer-history)))
 
 ;; Completions
 (use-package company
