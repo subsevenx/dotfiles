@@ -34,14 +34,17 @@
 ;; Initialize quality of life settings
 (load-file "~/.emacs.d/qol.el")
 
-;; Load MacOS-specific config
-(load-file "~/.emacs.d/mac.el")
+;; Loads config for org-mode
+(load-file "~/.emacs.d/org.el")
 
 ;; Themes
 (load-file "~/.emacs.d/theme.el")
 
 ;; Plugins
 (load-file "~/.emacs.d/plugins.el")
+
+;; Load MacOS-specific config
+(load-file "~/.emacs.d/mac.el")
 
 ;; EOF
 (provide 'init.el)
