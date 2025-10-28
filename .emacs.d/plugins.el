@@ -1,5 +1,10 @@
 ;;; Code:
 
+;; Doom Bar
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+
 ;; Shell Env
 (use-package exec-path-from-shell
   :config
@@ -21,7 +26,6 @@
   :bind (:map ivy-minibuffer-map))
 
 ;; Completions
-
 (use-package company
   :bind (("C-." . company-complete))
   :custom
