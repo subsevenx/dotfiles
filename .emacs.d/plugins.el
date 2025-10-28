@@ -1,5 +1,10 @@
 ;;; Code:
 
+;; Unicode Bullets for Org Mode
+(use-package org-bullets
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
 ;; Doom Bar
 (use-package doom-modeline
   :ensure t
