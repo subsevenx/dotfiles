@@ -1,5 +1,12 @@
 ;;; Code:
 
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install 'prompt) ;; Prompt install if language is not found
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all) ;; Use corresponding language
+  (global-treesit-auto-mode))
+
 ;; Doom Bar
 (use-package doom-modeline
   :ensure t
