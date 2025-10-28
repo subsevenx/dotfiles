@@ -35,7 +35,7 @@
 (load-file "~/.emacs.d/qol.el")
 
 ;; Loads config for org-mode
-(load-file "~/.emacs.d/org.el")
+(load-file "~/.emacs.d/orgconf.el")
 
 ;; Themes
 (load-file "~/.emacs.d/theme.el")
