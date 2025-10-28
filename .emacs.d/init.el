@@ -31,17 +31,17 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
-;; Initialize quality of life settings
-(load-file "~/.emacs.d/qol.el")
-
 ;; Loads config for org-mode
 (load-file "~/.emacs.d/orgconf.el")
 
-;; Themes
-(load-file "~/.emacs.d/theme.el")
-
 ;; Plugins
 (load-file "~/.emacs.d/plugins.el")
+
+;; Initialize quality of life settings
+(load-file "~/.emacs.d/qol.el")
+
+;; Themes
+(load-file "~/.emacs.d/theme.el")
 
 ;; Load MacOS-specific config
 (load-file "~/.emacs.d/mac.el")
