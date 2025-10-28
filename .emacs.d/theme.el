@@ -1,3 +1,4 @@
+;;; Code:
 (use-package doom-themes
   :ensure t
   :custom
