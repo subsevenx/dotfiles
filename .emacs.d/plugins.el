@@ -9,7 +9,11 @@
 ;; Doom Bar
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1))
+  :init (doom-modeline-mode 1)
+  :config
+  (setq doom-modeline-minor-modes t
+	doom-modeline-height 20
+	doom-modeline-bar-width 3))
 
 ;; Shell Env
 (use-package exec-path-from-shell
@@ -26,6 +30,7 @@
         ivy-use-selectable-prompt t))
 
 (use-package ivy-rich
+  :after ivy
   :init
   (ivy-rich-mode 1))
 
