@@ -25,6 +25,7 @@
 (use-package ivy
   :init
   (ivy-mode 1)
+  :config
   (setq ivy-height 15
         ivy-use-virtual-buffers t
         ivy-use-selectable-prompt t))
