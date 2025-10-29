@@ -1,12 +1,19 @@
 
 ;;; Code:
 
-;; Quality of life options
-(set-face-attribute 'default nil :height 180) ; Font size
+;;; Description: Quality of life options
 
-(setq inhibit-startup-message t) ; No startup message
+
+;; Fonts:
+(when (member "Fira Code" (font-family-list))
+  (set-face-attribute 'default nil :font "Fira Code" :height 165)
+  (set-face-attribute 'fixed-pitch nil :family "Fira Code"))
+
+(when (member "Droid Sans" (font-family-list))
+  (set-face-attribute 'variable-pitch nil :family "Source Sans Pro" :height 1.18))
 
 ;; GUI
+(setq inhibit-startup-message t) ; No startup message
 (scroll-bar-mode -1) ; Hide vert. scrollbar
 (horizontal-scroll-bar-mode -1) ; Hide horizontal scroll bar
 (tool-bar-mode -1) ; Hides the toolbar
