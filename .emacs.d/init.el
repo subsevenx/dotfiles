@@ -3,6 +3,10 @@
 
 ;;; Code:
 
+;; Vars
+(defvar dan/default-font-size 180)
+(defvar dan/default-variable-font-size 180)
+
 ;; Package manager
 (require 'package)
 (setq package-archives

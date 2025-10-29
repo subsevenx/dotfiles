@@ -1,5 +1,11 @@
 ;;; Code:
 
+;; Store temp files in a cache
+(setq user-emacs-directory "~/.cache/emacs")
+(use-package no-littering)
+(setq auto-save-file-name-transforms
+      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+
 ;; Doom Bar
 (use-package doom-modeline
   :ensure t

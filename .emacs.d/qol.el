@@ -2,7 +2,7 @@
 ;;; Code:
 
 ;; Quality of life options
-(set-face-attribute 'default nil :height 200) ; Font size
+(set-face-attribute 'default nil :height 180) ; Font size
 
 (setq inhibit-startup-message t) ; No startup message
 
