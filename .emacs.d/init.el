@@ -3,10 +3,6 @@
 
 ;;; Code:
 
-;; Vars
-(defvar dan/default-font-size 180)
-(defvar dan/default-variable-font-size 180)
-
 ;; Package manager
 (require 'package)
 (setq package-archives
@@ -34,14 +30,14 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
-;; Loads config for org-mode
-(load-file "~/.emacs.d/orgconf.el")
+;; Initialize quality of life settings
+(load-file "~/.emacs.d/qol.el")
 
 ;; Plugins
 (load-file "~/.emacs.d/plugins.el")
 
-;; Initialize quality of life settings
-(load-file "~/.emacs.d/qol.el")
+;; Loads config for org-mode
+(load-file "~/.emacs.d/orgconf.el")
 
 ;; Themes
 (load-file "~/.emacs.d/theme.el")
