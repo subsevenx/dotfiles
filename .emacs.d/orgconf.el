@@ -53,13 +53,17 @@
 		    'bold :height 1.8)
 
 ;; Some parts must use fixed-pitch even when variable pitch is set.
-(set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch :height 0.85)
-(set-face-attribute 'org-code nil :inherit '(shadow fixed-pitch) :height 0.85)
-(set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch) :height 0.85)
-(set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch) :height 0.85)
+(set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+(set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
+(set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
+(set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
 (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
 (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
-(set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
+(set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+(set-face-attribute 'line-number nil :inherit 'fixed-pitch)
+(set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch))
 
 (provide 'orgconf)
 
