@@ -1,10 +1,34 @@
 ;;; Code:
 
+;; Which Key
+(use-package which-key
+  :defer 0
+  :diminish which-key-mode
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 1))
+
+;; Projectile
+(use-package projectile
+  :diminish projectile-mode
+  :config (projectile-mode)
+  :custom ((projectile-completion-system 'ivy))
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  (when (file-directory-p "~/Development/")
+    (setq projectile-project-search-path '("~/Development/")))
+  (setq projectile-switch-project-action #'projectile-dired))
+
+
 ;; Store temp files in a cache
 (setq user-emacs-directory "~/.cache/emacs")
 (use-package no-littering)
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+
+;; All the Icons
+(use-package all-the-icons)
 
 ;; Doom Bar
 (use-package doom-modeline
@@ -30,10 +54,32 @@
         ivy-use-virtual-buffers t
         ivy-use-selectable-prompt t))
 
+;; Better help menus
+(use-package helpful
+  :commands (helpful-callable helpful-variable helpful-command helpful-key)
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
+
 (use-package ivy-rich
   :after ivy
   :init
   (ivy-rich-mode 1))
+
+(use-package ivy-prescient
+  :after counsel
+  :custom
+  (ivy-prescient-enable-filtering nil)
+  :config
+  ;; Uncomment the following line to have sorting remembered across sessions!
+  ;(prescient-persist-mode 1)
+  (ivy-prescient-mode 1))
+
 
 (use-package counsel
   :after ivy
