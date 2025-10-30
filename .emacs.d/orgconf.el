@@ -1,40 +1,39 @@
- 
+;;; orgconf.el --- Org UI conf -*- lexical-binding: t; -*-
+;;; Commentary: Configuration for my org mode.
 ;;; Code:
 
-;; Unicode Bullets for Org Mode
-(use-package org-bullets
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "◉" "⚬" "◈" "◇")))
-
-;; Make use of latest org-mode version
 (use-package org
-  :hook (org-mode . org-mode-setup)
+  :preface
+  (defun org-mode-setup ()
+    (org-indent-mode 1)
+    (variable-pitch-mode 1)
+    (auto-fill-mode 0)
+    (visual-line-mode 1))
+  (defun org-mode-visual-fill ()
+    (setq visual-fill-column-width 100
+          visual-fill-column-center-text t)
+    (visual-fill-column-mode 1))
+  :hook ((org-mode . org-mode-setup)
+         (org-mode . org-mode-visual-fill)
+         (org-mode . (lambda ()
+                       (font-lock-add-keywords
+                        nil '(("^ *\\([-]\\) "
+                               (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))))
   :config
-  (setq org-ellipsis " ◇"))
+  (setq org-ellipsis "⤵"
+        org-pretty-entities t
+        org-hide-emphasis-markers t))
 
-;; Visual spacing
-(defun org-mode-visual-fill ()
-  (setq visual-fill-column-width 100
-        visual-fill-column-center-text t)
-  (visual-fill-column-mode 1))
+(use-package visual-fill-column :defer t)
 
-(use-package visual-fill-column
-  :hook (org-mode . org-mode-visual-fill))
+;; Prefer modern bullets
+(use-package org-superstar
+  :hook (org-mode . org-superstar-mode)
+  :custom
+  (org-superstar-headline-bullets-list '("◉" "○" "●" "◉" "⚬" "◈" "◇"))
+  (org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?•) (?- . ?•))))
 
 (require 'org-indent)
-(set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
-
-; I have to hook so options get added to run-time
-(defun org-mode-setup ()
-  (org-indent-mode)
-  (variable-pitch-mode 1)
-  (auto-fill-mode 0)
-  (visual-line-mode 1)
-  (org-bullets-mode 1))
-
-(font-lock-add-keywords 'org-mode
-			'(("^ *\\([-]\\) "
-			   (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
 (dolist (face '((org-level-1 . 1.35)
                 (org-level-2 . 1.3)
