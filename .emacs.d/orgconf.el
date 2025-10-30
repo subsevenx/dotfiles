@@ -20,7 +20,7 @@
                         nil '(("^ *\\([-]\\) "
                                (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))))
   :config
-  (setq org-ellipsis "⤵"
+  (setq org-ellipsis " ▼"
         org-pretty-entities t
         org-hide-emphasis-markers t))
 
@@ -31,10 +31,14 @@
   :hook (org-mode . org-superstar-mode)
   :custom
   (org-superstar-headline-bullets-list '("◉" "○" "●" "◉" "⚬" "◈" "◇"))
-  (org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?•) (?- . ?•))))
-
+  (org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?•) (?- . ?•)))
+  :config
+  (setq org-superstar-leading-bullet ?\s)
+  (setq org-indent-mode-turns-on-hiding-stars nil))
+  
 (require 'org-indent)
 
+;; Variable height for headings
 (dolist (face '((org-level-1 . 1.35)
                 (org-level-2 . 1.3)
                 (org-level-3 . 1.2)
@@ -56,8 +60,6 @@
 (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
 (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
 (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch)
-
-(add-hook 'org-mode-hook 'variable-pitch-mode)
 
 (provide 'orgconf)
 
