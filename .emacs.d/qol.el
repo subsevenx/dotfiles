@@ -12,6 +12,8 @@
 (when (member "Droid Sans" (font-family-list))
   (set-face-attribute 'variable-pitch nil :family "Source Sans Pro" :height 1.18))
 
+(setq inhibit-compacting-font-caches t)
+
 ;; GUI
 (setq inhibit-startup-message t) ; No startup message
 (scroll-bar-mode -1) ; Hide vert. scrollbar
