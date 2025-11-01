@@ -79,9 +79,7 @@
   ;(prescient-persist-mode 1)
   (ivy-prescient-mode 1))
 
-
 (use-package counsel
-  :after ivy
   :init
   (counsel-mode 1)
   :bind (("M-x" . counsel-M-x)
@@ -90,22 +88,30 @@
 	 :map ivy-minibuffer-map
 	 ("C-r" . 'counsel-minibuffer-history)))
 
-;; Completions
 (use-package company
-  :bind (("C-." . company-complete))
+  :after lsp-mode
+  :hook (lsp-mode . company-mode)
+  :bind (:map company-active-map
+         ("<tab>" . company-complete-selection))
+        (:map lsp-mode-map
+              ("<tab>" . company-indent-or-complete-common))
+	(("C-." . company-complete))
   :custom
-  (company-idle-delay 0)
+  (company-minimum-prefix-length 1)
+  (company-idle-delay 0.0)
   (company-dabbrev-downcase nil)
   (company-show-numbers t)
   (company-tooltip-limit 10)
   :config
-  (global-company-mode)
-
     ;; use numbers 0-9 to select company completion candidates
   (let ((map company-active-map))
     (mapc (lambda (x) (define-key map (format "%d" x)
                         `(lambda () (interactive) (company-complete-number ,x))))
           (number-sequence 0 9))))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
+
 
 (use-package flycheck
   :config
