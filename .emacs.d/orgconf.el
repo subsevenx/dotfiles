@@ -65,6 +65,22 @@
 (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
 (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
 
+;; Conf: Agenda, keywords, templates.
+
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "MAYBE(m)" "NEXT(n)" "STARTED(s)" "WAITING(w)" "DELEGATED(g)" "|" "DONE(d)" "DEFERRED(f)" "CANCELLED(c)")))
+
+(setq org-todo-keyword-faces
+      '(("TODO" . org-warning)
+        ("MAYBE" . font-lock-keyword-face)
+        ("NEXT" . font-lock-function-name-face)
+        ("STARTED" . font-lock-string-face)
+        ("WAITING" . font-lock-constant-face)
+        ("DELEGATED" . font-lock-type-face)
+        ("DONE" . org-done)
+        ("DEFERRED" . shadow)
+        ("CANCELLED" . font-lock-comment-face)))
+
 (provide 'orgconf)
 
 ;;; orgconf.el ends here
