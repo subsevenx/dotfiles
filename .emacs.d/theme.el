@@ -7,7 +7,7 @@
   (doom-themes-enable-italic t)
  
   :config
-  (load-theme 'doom-molokai t)
+  (load-theme 'doom-snazzy t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
