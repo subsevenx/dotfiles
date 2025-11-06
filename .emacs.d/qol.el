@@ -3,10 +3,9 @@
 
 ;;; Description: Quality of life options
 
-
 ;; Fonts:
 (when (member "Fira Code" (font-family-list))
-  (set-face-attribute 'default nil :font "Fira Code" :height 165)
+  (set-face-attribute 'default nil :font "Fira Code" :height 175)
   (set-face-attribute 'fixed-pitch nil :family "Fira Code"))
 
 (when (member "Droid Sans" (font-family-list))
