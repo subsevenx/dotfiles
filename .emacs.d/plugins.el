@@ -53,18 +53,6 @@
         ivy-use-virtual-buffers t
         ivy-use-selectable-prompt t))
 
-;; Better help menus
-(use-package helpful
-  :commands (helpful-callable helpful-variable helpful-command helpful-key)
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
-  :bind
-  ([remap describe-function] . counsel-describe-function)
-  ([remap describe-command] . helpful-command)
-  ([remap describe-variable] . counsel-describe-variable)
-  ([remap describe-key] . helpful-key))
-
 (use-package ivy-rich
   :after ivy
   :init
@@ -80,13 +68,13 @@
   (ivy-prescient-mode 1))
 
 (use-package counsel
-  :init
-  (counsel-mode 1)
-  :bind (("M-x" . counsel-M-x)
-	 ("C-x b" . counsel-ibuffer)
-	 ("C-x C-f" . counsel-find-file)
-	 :map ivy-minibuffer-map
-	 ("C-r" . 'counsel-minibuffer-history)))
+  :bind (("C-M-j" . 'counsel-switch-buffer)
+         :map minibuffer-local-map
+         ("C-r" . 'counsel-minibuffer-history))
+  :custom
+  (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
+  :config
+  (counsel-mode 1))
 
 (use-package company
   :after lsp-mode
@@ -124,6 +112,18 @@
   :config
   (setq lsp-prefer-flymake nil
 	lsp-headerline-breadcrumb-mode nil))
+
+;; Better help menus
+(use-package helpful
+  :commands (helpful-callable helpful-variable helpful-command helpful-key)
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
 
 ;; EOF
 (provide 'plugins.el)
