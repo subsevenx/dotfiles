@@ -42,7 +42,7 @@
 (use-package exec-path-from-shell
   :config
   (when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize)))
+    (exec-path-from-shell-initialize)))
 
 ;; Make M-x and other mini-buffers sortable, filterable
 (use-package ivy
@@ -64,7 +64,7 @@
   (ivy-prescient-enable-filtering nil)
   :config
   ;; Uncomment the following line to have sorting remembered across sessions!
-  ;(prescient-persist-mode 1)
+					;(prescient-persist-mode 1)
   (ivy-prescient-mode 1))
 
 (use-package counsel
@@ -80,10 +80,10 @@
   :after lsp-mode
   :hook (lsp-mode . company-mode)
   :bind (:map company-active-map
-         ("<tab>" . company-complete-selection))
-        (:map lsp-mode-map
-              ("<tab>" . company-indent-or-complete-common))
-	(("C-." . company-complete))
+              ("<tab>" . company-complete-selection))
+  (:map lsp-mode-map
+        ("<tab>" . company-indent-or-complete-common))
+  (("C-." . company-complete))
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0)
@@ -91,10 +91,10 @@
   (company-show-numbers t)
   (company-tooltip-limit 10)
   :config
-    ;; use numbers 0-9 to select company completion candidates
+  ;; use numbers 0-9 to select company completion candidates
   (let ((map company-active-map))
     (mapc (lambda (x) (define-key map (format "%d" x)
-                        `(lambda () (interactive) (company-complete-number ,x))))
+				  `(lambda () (interactive) (company-complete-number ,x))))
           (number-sequence 0 9))))
 
 (use-package company-box
@@ -124,6 +124,14 @@
   ([remap describe-command] . helpful-command)
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
+
+;; Better Spellcheck
+(use-package jinx
+  :hook ((org-mode markdown-mode text-mode gfm-mode rst-mode latex-mode
+                   message-mode mu4e-compose-mode mail-mode TeX-mode)
+         . jinx-mode)
+  :bind (("C-+" . jinx-correct)
+         ("C-M-+" . jinx-languages)))
 
 ;; EOF
 (provide 'plugins.el)
