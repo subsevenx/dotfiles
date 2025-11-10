@@ -51,9 +51,6 @@
 ;; Themes
 (load-file "~/.emacs.d/theme.el")
 
-;; Load MacOS-specific config
-(load-file "~/.emacs.d/mac.el")
-
 ;; EOF
 (provide 'init.el)
 
