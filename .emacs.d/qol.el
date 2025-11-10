@@ -38,5 +38,11 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p) ; Cuts down the alias to y or n
 
+;; Custom Key Bindings
+(defconst *is-a-mac* (eq system-type 'darwin))
+
+(when *is-a-mac*
+  (setq mac-command-modifier 'control))
+
 (provide 'qol)
 ;;; qol.el ends here
