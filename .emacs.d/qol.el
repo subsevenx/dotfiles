@@ -4,12 +4,14 @@
 ;;; Description: Quality of life options
 
 ;; Fonts:
-(when (member "Fira Code" (font-family-list))
-  (set-face-attribute 'default nil :font "Fira Code" :height 175)
-  (set-face-attribute 'fixed-pitch nil :family "Fira Code"))
+(set-face-attribute 'default nil :font "Fira Code" :height 180)
 
-(when (member "Droid Sans" (font-family-list))
-  (set-face-attribute 'variable-pitch nil :family "Source Sans Pro" :height 1.18))
+;; Set the fixed pitch face
+(set-face-attribute 'fixed-pitch nil :font "Fira Code" :height 180)
+
+;; Set the variable pitch face
+(set-face-attribute 'variable-pitch nil :font "Droid Sans" :height 180 :weight 'regular)
+
 
 (setq inhibit-compacting-font-caches t)
 
