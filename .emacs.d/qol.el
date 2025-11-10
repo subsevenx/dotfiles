@@ -12,7 +12,6 @@
 ;; Set the variable pitch face
 (set-face-attribute 'variable-pitch nil :font "Droid Sans" :height 180 :weight 'regular)
 
-
 (setq inhibit-compacting-font-caches t)
 
 ;; GUI
