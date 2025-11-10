@@ -46,12 +46,21 @@
 
 ;; Make M-x and other mini-buffers sortable, filterable
 (use-package ivy
-  :init
-  (ivy-mode 1)
+  :bind (("C-s" . swiper)
+         :map ivy-minibuffer-map
+         ("TAB" . ivy-alt-done)
+         ("C-l" . ivy-alt-done)
+         ("C-n" . ivy-next-line)
+         ("C-p" . ivy-previous-line)
+         :map ivy-switch-buffer-map
+         ("C-p" . ivy-previous-line)
+         ("C-l" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill)
+         :map ivy-reverse-i-search-map
+         ("C-p" . ivy-previous-line)
+         ("C-d" . ivy-reverse-i-search-kill))
   :config
-  (setq ivy-height 15
-        ivy-use-virtual-buffers t
-        ivy-use-selectable-prompt t))
+  (ivy-mode 1))
 
 (use-package ivy-rich
   :after ivy
@@ -63,8 +72,6 @@
   :custom
   (ivy-prescient-enable-filtering nil)
   :config
-  ;; Uncomment the following line to have sorting remembered across sessions!
-					;(prescient-persist-mode 1)
   (ivy-prescient-mode 1))
 
 (use-package counsel
