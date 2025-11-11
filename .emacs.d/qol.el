@@ -23,6 +23,21 @@
 (set-fringe-mode 10) ; Setting gutters
 (global-display-line-numbers-mode t) ; Show line numbers
 
+;; HS Mode Preferences
+(setq hs-minor-mode-map
+      (let ((map (make-sparse-keymap)))
+        ;; These bindings roughly imitate those used by Outline mode.
+        (define-key map (kbd "C-c h <") 'hs-hide-block)
+        (define-key map (kbd "C-c h >") 'hs-show-block)
+        (define-key map (kbd "C-c h M-<") 'hs-hide-all)
+        (define-key map (kbd "C-c h M->") 'hs-show-all)
+        (define-key map (kbd "C-c h C-l") 'hs-hide-level)
+        (define-key map (kbd "C-c h C-c") 'hs-toggle-hiding)
+        (define-key map [(shift mouse-2)] 'hs-mouse-toggle-hiding)
+        map))
+
+(add-hook 'prog-mode-hook (lambda () (hs-minor-mode t)))
+
 ;; Editing
 (save-place-mode) ; Save cursor place in file exit
 (global-hl-line-mode t) ; Highlights current line
