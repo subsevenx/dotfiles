@@ -31,16 +31,19 @@
     (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
     (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
     (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch))
+
   (defun org-mode-setup ()
     (org-font-setup)
     (org-indent-mode 1)
     (variable-pitch-mode 1)
     (auto-fill-mode 0)
     (visual-line-mode 1))
+
   (defun org-mode-visual-fill ()
     (setq visual-fill-column-width 100
           visual-fill-column-center-text t)
     (visual-fill-column-mode 1))
+  
   :hook ((org-mode . org-mode-setup)
          (org-mode . org-mode-visual-fill)
          (org-mode . (lambda ()
@@ -50,7 +53,24 @@
   :config
   (setq org-ellipsis " ▼"
         org-pretty-entities t
-        org-hide-emphasis-markers t))
+        org-hide-emphasis-markers t)
+
+  ;; Conf: Agenda, keywords, templates.
+  (setq org-todo-keywords
+	'((sequence "TODO(t)" "MAYBE(m)" "NEXT(n)" "STARTED(s)" "WAITING(w)"
+		    "|" "DONE(d)" "DEFERRED(f)" "CANCELLED(c)"
+		    "|" "NOTE(o)")))
+
+  (setq org-todo-keyword-faces
+	'(("TODO" . org-warning)
+          ("MAYBE" . font-lock-keyword-face)
+          ("NEXT" . font-lock-function-name-face)
+          ("STARTED" . font-lock-string-face)
+          ("WAITING" . font-lock-constant-face)
+          ("NOTE" . font-lock-type-face)
+          ("DONE" . org-done)
+          ("DEFERRED" . shadow)
+          ("CANCELLED" . font-lock-comment-face))))
 
 (use-package visual-fill-column :defer t)
 
@@ -58,31 +78,13 @@
 (use-package org-superstar
   :hook (org-mode . org-superstar-mode)
   :custom
-  (org-superstar-headline-bullets-list '("◉" "○" "●" "◉" "⚬" "◈" "◇"))
+  (org-superstar-headline-bullets-list '("➀" "➁" "➂" "➃" "➄" "➅" "➆" "➇"))
   (org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?•) (?- . ?•)))
   :config
   (setq org-superstar-leading-bullet ?\s)
   (setq org-indent-mode-turns-on-hiding-stars nil))
 
 (require 'org-indent)
-
-;; Conf: Agenda, keywords, templates.
-
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "MAYBE(m)" "NEXT(n)" "STARTED(s)" "WAITING(w)"
-		  "|" "DONE(d)" "DEFERRED(f)" "CANCELLED(c)"
-		  "|" "NOTE(o)")))
-
-(setq org-todo-keyword-faces
-      '(("TODO" . org-warning)
-        ("MAYBE" . font-lock-keyword-face)
-        ("NEXT" . font-lock-function-name-face)
-        ("STARTED" . font-lock-string-face)
-        ("WAITING" . font-lock-constant-face)
-        ("NOTE" . font-lock-type-face)
-        ("DONE" . org-done)
-        ("DEFERRED" . shadow)
-        ("CANCELLED" . font-lock-comment-face)))
 
 (provide 'orgconf)
 
