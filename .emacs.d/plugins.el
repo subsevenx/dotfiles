@@ -2,29 +2,23 @@
 
 ;; Store temp files in a cache
 (setq user-emacs-directory "~/.cache/emacs")
+
 (use-package no-littering)
+
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
-;; Which Key
-(use-package which-key
-  :defer 0
-  :diminish which-key-mode
+(use-package auto-package-update
+  :custom
+  (auto-package-update-interval 7)
+  (auto-package-update-prompt-before-update t)
+  (auto-package-update-hide-results t)
   :config
-  (which-key-mode)
-  (setq which-key-idle-delay 1))
-
-;; Projectile
-(use-package projectile
-  :diminish projectile-mode
-  :config (projectile-mode)
-  :custom ((projectile-completion-system 'ivy))
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
-  :init
-  (when (file-directory-p "~/Development/")
-    (setq projectile-project-search-path '("~/Development/")))
-  (setq projectile-switch-project-action #'projectile-dired))
+  (auto-package-update-maybe)
+  (auto-package-update-at-time "09:00")
+  (setq
+   use-package-always-ensure t
+   use-package-verbose t))
 
 ;; All the Icons
 (use-package all-the-icons)
@@ -38,11 +32,29 @@
 	doom-modeline-height 20
 	doom-modeline-bar-width 3))
 
+;; Which Key
+(use-package which-key
+  :defer 0
+  :diminish which-key-mode
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 1))
+
 ;; Shell Env
 (use-package exec-path-from-shell
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
+
+;; Ivy enchancer
+(use-package counsel
+  :bind (("C-M-j" . 'counsel-switch-buffer)
+         :map minibuffer-local-map
+         ("C-r" . 'counsel-minibuffer-history))
+  :custom
+  (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
+  :config
+  (counsel-mode 1))
 
 ;; Make M-x and other mini-buffers sortable, filterable
 (use-package ivy
@@ -74,15 +86,14 @@
   :config
   (ivy-prescient-mode 1))
 
-(use-package counsel
-  :bind (("C-M-j" . 'counsel-switch-buffer)
-         :map minibuffer-local-map
-         ("C-r" . 'counsel-minibuffer-history))
-  :custom
-  (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
+;; Package for interacting with language servers
+(use-package lsp-mode
+  :commands lsp
   :config
-  (counsel-mode 1))
+  (setq lsp-prefer-flymake nil
+	lsp-headerline-breadcrumb-mode nil))
 
+;; Completion suggestions
 (use-package company
   :after lsp-mode
   :hook (lsp-mode . company-mode)
@@ -104,21 +115,14 @@
 				  `(lambda () (interactive) (company-complete-number ,x))))
           (number-sequence 0 9))))
 
+;;company front-end and icons
 (use-package company-box
   :hook (company-mode . company-box-mode))
-
 
 (use-package flycheck
   :config
   (add-hook 'prog-mode-hook 'flycheck-mode) ;; lint always-on
   (add-hook 'after-init-hook #'global-flycheck-mode))
-
-;; Package for interacting with language servers
-(use-package lsp-mode
-  :commands lsp
-  :config
-  (setq lsp-prefer-flymake nil
-	lsp-headerline-breadcrumb-mode nil))
 
 ;; Better help menus
 (use-package helpful
@@ -139,6 +143,18 @@
          . jinx-mode)
   :bind (("C-+" . jinx-correct)
          ("C-M-+" . jinx-languages)))
+
+;; Projectile
+(use-package projectile
+  :diminish projectile-mode
+  :config (projectile-mode t)
+  :custom ((projectile-completion-system 'ivy))
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  (when (file-directory-p "~/Development/")
+    (setq projectile-project-search-path '("~/Development/")))
+  (setq projectile-switch-project-action #'projectile-dired))
 
 ;; EOF
 (provide 'plugins.el)
