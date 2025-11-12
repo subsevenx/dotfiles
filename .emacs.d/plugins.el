@@ -1,3 +1,9 @@
+;;; -*- lexical-binding: t -*-
+
+;;; package --- Summary
+;;; Commentary:
+;;; Provides package configuration
+
 ;;; Code:
 
 ;; Store temp files in a cache
@@ -35,10 +41,6 @@
           map))
   :hook (prog-mode . hs-minor-mode))
 
-;; All the Icons
-(when (display-graphic-p)
-  (use-package all-the-icons))
-
 ;; Doom Bar
 (use-package doom-modeline
   :ensure t
@@ -62,44 +64,35 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
-;; Ivy enchancer
-(use-package counsel
-  :bind (("C-M-j" . 'counsel-switch-buffer)
-         :map minibuffer-local-map
-         ("C-r" . 'counsel-minibuffer-history))
+;; Minibuffer enhancements
+(use-package marginalia
+  :ensure t
   :custom
-  (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
-  :config
-  (counsel-mode 1))
+  (marginalia-max-relative-age 0)
+  (marginalia-align 'right)
+  :hook (after-init . marginalia-mode))
 
-;; Make M-x and other mini-buffers sortable, filterable
-(use-package ivy
-  :bind (("C-s" . swiper)
-         :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)
-         ("C-n" . ivy-next-line)
-         ("C-p" . ivy-previous-line)
-         :map ivy-switch-buffer-map
-         ("C-p" . ivy-previous-line)
-         ("C-l" . ivy-done)
-         ("C-d" . ivy-switch-buffer-kill)
-         :map ivy-reverse-i-search-map
-         ("C-p" . ivy-previous-line)
-         ("C-d" . ivy-reverse-i-search-kill))
-  :config
-  (ivy-mode 1))
-
-(use-package ivy-rich
-  :after ivy
-  :init
-  (ivy-rich-mode 1))
-
-(use-package ivy-prescient
-  :after counsel
+;; Minibuffer completions
+(use-package vertico
+  :ensure t
   :custom
-  (ivy-prescient-enable-filtering nil)
+  (vertico-count 15)
+  (vertico-resize t)
+  :hook (after-init . vertico-mode))
+
+;; Completion style
+(use-package orderless
+  :ensure t
   :config
-  (ivy-prescient-mode 1))
+  (setq completion-styles '(orderless))
+  (setq completion-category-defaults nil)
+  (setq completion-category-overrides nil)
+  :custom
+  (orderless-matching-styles
+   '(orderless-literal
+     orderless-prefixes
+     orderless-initialism
+     orderless-regexp)))
 
 ;; Package for interacting with language servers
 (use-package lsp-mode
@@ -163,13 +156,23 @@
 (use-package projectile
   :diminish projectile-mode
   :config (projectile-mode t)
-  :custom ((projectile-completion-system 'ivy))
+  :custom ((projectile-completion-system 'default))
   :bind-keymap
   ("C-c p" . projectile-command-map)
   :init
   (when (file-directory-p "~/Development/")
     (setq projectile-project-search-path '("~/Development/")))
   (setq projectile-switch-project-action #'projectile-dired))
+
+;; All the Icons
+(when (display-graphic-p)
+  (use-package all-the-icons))
+
+(use-package all-the-icons-completion
+  :after (marginalia all-the-icons)
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
+  :init
+  (all-the-icons-completion-mode))
 
 (use-package nerd-icons
   :ensure t)
