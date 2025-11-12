@@ -43,10 +43,11 @@
 ;; Custom Key Bindings
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
-(defconst *is-a-mac* (eq system-type 'darwin))
+(defconst *is-a-mac* (eq system-type 'darwin)) ;; Detecting OS to make keybinding checks.
+(defconst *is-a-linux* (eq system-type 'gnu/linux))
 
 (when *is-a-mac*
-  (setq mac-command-modifier 'control))
+  (setq mac-command-modifier 'control)) ;; Using Command as CTRL
 
 (provide 'qol)
 ;;; qol.el ends here
