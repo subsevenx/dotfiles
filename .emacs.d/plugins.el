@@ -37,7 +37,7 @@
 
 ;; All the Icons
 (when (display-graphic-p)
-  (use-package 'all-the-icons))
+  (use-package all-the-icons))
 
 ;; Doom Bar
 (use-package doom-modeline
