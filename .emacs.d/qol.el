@@ -41,6 +41,8 @@
 (defalias 'yes-or-no-p 'y-or-n-p) ; Cuts down the alias to y or n
 
 ;; Custom Key Bindings
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
 (defconst *is-a-mac* (eq system-type 'darwin))
 
 (when *is-a-mac*
