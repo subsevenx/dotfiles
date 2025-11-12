@@ -171,6 +171,14 @@
     (setq projectile-project-search-path '("~/Development/")))
   (setq projectile-switch-project-action #'projectile-dired))
 
+(use-package nerd-icons
+  :ensure t)
+
+(use-package nerd-icons-dired
+  :ensure t
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
+
 ;; EOF
 (provide 'plugins.el)
 ;;; plugins.el ends here
