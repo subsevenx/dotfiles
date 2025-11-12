@@ -61,7 +61,6 @@
   :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
          ("TAB" . ivy-alt-done)
-         ("C-l" . ivy-alt-done)
          ("C-n" . ivy-next-line)
          ("C-p" . ivy-previous-line)
          :map ivy-switch-buffer-map
