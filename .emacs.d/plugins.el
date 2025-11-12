@@ -20,6 +20,22 @@
    use-package-always-ensure t
    use-package-verbose t))
 
+;; HS Mode Preferences
+(use-package hideshow
+  :ensure nil
+  :init
+  (setq hs-minor-mode-map
+        (let ((map (make-sparse-keymap)))
+          (define-key map (kbd "C-c h <") #'hs-hide-block)
+          (define-key map (kbd "C-c h >") #'hs-show-block)
+          (define-key map (kbd "C-c h M-<") #'hs-hide-all)
+          (define-key map (kbd "C-c h M->") #'hs-show-all)
+          (define-key map (kbd "C-c h C-l") #'hs-hide-level)
+          (define-key map (kbd "C-c h C-c") #'hs-toggle-hiding)
+          (define-key map [S-mouse-2] #'hs-mouse-toggle-hiding)
+          map))
+  :hook (prog-mode . hs-minor-mode))
+
 ;; All the Icons
 (use-package all-the-icons)
 
