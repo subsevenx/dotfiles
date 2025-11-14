@@ -58,9 +58,8 @@
   ;; Conf: Agenda, keywords, templates.
   (setq org-todo-keywords
 	'((sequence "TODO(t)" "MAYBE(m)" "NEXT(n)" "STARTED(s)" "WAITING(w)"
-                    "|" "DONE(d!)" "DEFERRED(f!)" "CANCELLED(c!)"
-                    "|" "NOTE(o!)")))
-
+                    "|" "DONE(d!)" "DEFERRED(f@)" "CANCELLED(c@)"
+                    "|" "NOTE(o)")))
   (setq org-todo-keyword-faces
 	'(("TODO" . org-warning)
           ("MAYBE" . font-lock-keyword-face)
@@ -71,8 +70,15 @@
           ("DONE" . org-done)
           ("DEFERRED" . shadow)
           ("CANCELLED" . font-lock-comment-face)))
+  
+  ;; Log state changes into drawer
+  (setq org-log-into-drawer t)
+  (setq org-log-done 'time)
+  ;; Log all state changes except NOTE
+  (setq org-log-repeat 'time)
+  (setq org-log-states-order-reversed t)
 
-
+  ;; Agenda file
   (setq org-agenda-files
 	'("~/Notes/200.Profressional/200.Professional.Agenda.org")))
 
