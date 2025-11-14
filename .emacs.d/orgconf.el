@@ -70,7 +70,11 @@
           ("NOTE" . font-lock-type-face)
           ("DONE" . org-done)
           ("DEFERRED" . shadow)
-          ("CANCELLED" . font-lock-comment-face))))
+          ("CANCELLED" . font-lock-comment-face)))
+
+
+  (setq org-agenda-files
+	'("~/Notes/200.Profressional/200.Professional.Agenda.org")))
 
 (use-package visual-fill-column :defer t)
 
