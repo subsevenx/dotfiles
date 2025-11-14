@@ -58,8 +58,8 @@
   ;; Conf: Agenda, keywords, templates.
   (setq org-todo-keywords
 	'((sequence "TODO(t)" "MAYBE(m)" "NEXT(n)" "STARTED(s)" "WAITING(w)"
-		    "|" "DONE(d)" "DEFERRED(f)" "CANCELLED(c)"
-		    "|" "NOTE(o)")))
+                    "|" "DONE(d!)" "DEFERRED(f!)" "CANCELLED(c!)"
+                    "|" "NOTE(o!)")))
 
   (setq org-todo-keyword-faces
 	'(("TODO" . org-warning)
