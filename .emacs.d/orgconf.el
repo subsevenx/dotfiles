@@ -51,12 +51,22 @@
                         nil '(("^ *\\([-]\\) "
                                (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))))
   :config
+  (setq org-log-into-drawer t
+	org-log-done 'time
+	org-log-repeat 'time
+	org-log-states-order-reversed t
+	org-ellipsis " ▼"
+        org-pretty-entities t
+        org-hide-emphasis-markers t
+	org-time-stamp-formats '("<%Y-%m-%d %a>" . "<%Y-%m-%d %a %H:%M:%S>")
+	org-agenda-files
+	'("~/Notes/200.Profressional/200.Professional.Agenda.org"))
 
   ;; Conf: Agenda, keywords, templates.
   (setq org-todo-keywords
-      '((sequence "TODO(t!)" "MAYBE(m!)" "WAITING(w!)" "NEXT(n!)" "STARTED(s!)"
-                  "|" "DONE(d!)" "DEFERRED(f@)" "CANCELLED(c@)")
-        (sequence "NOTE(o)" "|")))
+	'((sequence "TODO(t!)" "MAYBE(m!)" "WAITING(w!)" "NEXT(n!)" "STARTED(s!)"
+                    "|" "DONE(d!)" "DEFERRED(f@)" "CANCELLED(c@)")
+          (sequence "NOTE(o)" "|")))
   
   (setq org-todo-keyword-faces
 	'(("TODO" :foreground "DarkOrange" :weight bold)
@@ -67,20 +77,7 @@
           ("NOTE" :foreground "MediumBlue" :weight normal)
           ("DONE" :foreground "MediumSpringGreen" :weight bold)
           ("DEFERRED" :foreground "DimGray" :weight bold)
-          ("CANCELLED" :foreground "firebrick3" :strike-through t :weight bold)))
-  
-  (setq org-log-into-drawer t
-	org-log-done 'time
-	org-log-repeat 'time
-	org-log-states-order-reversed t
-	org-ellipsis " ▼"
-        org-pretty-entities t
-        org-hide-emphasis-markers t
-	org-time-stamp-formats '("<%Y-%m-%d %a>" . "<%Y-%m-%d %a %H:%M:%S>"))
-
-  ;; Agenda file
-  (setq org-agenda-files
-	'("~/Notes/200.Profressional/200.Professional.Agenda.org")))
+          ("CANCELLED" :foreground "firebrick3" :strike-through t :weight bold))))
 
 (use-package visual-fill-column :defer t)
 
