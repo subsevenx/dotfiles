@@ -20,7 +20,7 @@
 			'bold :height 1.8)
 
     ;; Some parts must use fixed-pitch even when variable pitch is set.
-    (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+    (set-face-attribute 'org-block nil    :inherit 'fixed-pitch)
     (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
     (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
     (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
