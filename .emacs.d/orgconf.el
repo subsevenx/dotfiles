@@ -51,9 +51,6 @@
                         nil '(("^ *\\([-]\\) "
                                (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))))
   :config
-  (setq org-ellipsis " ▼"
-        org-pretty-entities t
-        org-hide-emphasis-markers t)
 
   ;; Conf: Agenda, keywords, templates.
   (setq org-todo-keywords
@@ -66,18 +63,20 @@
           ("MAYBE" :foreground "plum2" :weight bold)
           ("WAITING" :foreground "gold" :weight bold)
           ("NEXT" :foreground "khaki3" :weight bold)
-          ("STARTED" :foreground "green" :weight bold)
+          ("STARTED" :foreground "chartreuse" :weight bold)
           ("NOTE" :foreground "MediumBlue" :weight normal)
-          ("DONE" :foreground "green" :weight bold)
+          ("DONE" :foreground "MediumSpringGreen" :weight bold)
           ("DEFERRED" :foreground "DimGray" :weight bold)
           ("CANCELLED" :foreground "firebrick3" :strike-through t :weight bold)))
   
-  ;; Log state changes into drawer
-  (setq org-log-into-drawer t)
-  (setq org-log-done 'time)
-  ;; Log all state changes except NOTE
-  (setq org-log-repeat 'time)
-  (setq org-log-states-order-reversed t)
+  (setq org-log-into-drawer t
+	org-log-done 'time
+	org-log-repeat 'time
+	org-log-states-order-reversed t
+	org-ellipsis " ▼"
+        org-pretty-entities t
+        org-hide-emphasis-markers t
+	org-time-stamp-formats '("<%Y-%m-%d %a>" . "<%Y-%m-%d %a %H:%M:%S>"))
 
   ;; Agenda file
   (setq org-agenda-files
