@@ -57,19 +57,20 @@
 
   ;; Conf: Agenda, keywords, templates.
   (setq org-todo-keywords
-	'((sequence "TODO(t)" "MAYBE(m)" "NEXT(n)" "STARTED(s)" "WAITING(w)"
-                    "|" "DONE(d!)" "DEFERRED(f@)" "CANCELLED(c@)"
-                    "|" "NOTE(o)")))
+      '((sequence "TODO(t!)" "MAYBE(m!)" "WAITING(w!)" "NEXT(n!)" "STARTED(s!)"
+                  "|" "DONE(d!)" "DEFERRED(f@)" "CANCELLED(c@)")
+        (sequence "NOTE(o)" "|")))
+  
   (setq org-todo-keyword-faces
-	'(("TODO" . org-warning)
-          ("MAYBE" . font-lock-keyword-face)
-          ("NEXT" . font-lock-function-name-face)
-          ("STARTED" . font-lock-string-face)
-          ("WAITING" . font-lock-constant-face)
-          ("NOTE" . font-lock-type-face)
-          ("DONE" . org-done)
-          ("DEFERRED" . shadow)
-          ("CANCELLED" . font-lock-comment-face)))
+	'(("TODO" :foreground "DarkOrange" :weight bold)
+          ("MAYBE" :foreground "plum2" :weight bold)
+          ("WAITING" :foreground "gold" :weight bold)
+          ("NEXT" :foreground "khaki3" :weight bold)
+          ("STARTED" :foreground "green" :weight bold)
+          ("NOTE" :foreground "MediumBlue" :weight normal)
+          ("DONE" :foreground "green" :weight bold)
+          ("DEFERRED" :foreground "DimGray" :weight bold)
+          ("CANCELLED" :foreground "firebrick3" :strike-through t :weight bold)))
   
   ;; Log state changes into drawer
   (setq org-log-into-drawer t)
