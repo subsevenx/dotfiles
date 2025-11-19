@@ -189,7 +189,10 @@
   (dired-mode . nerd-icons-dired-mode))
 
 ;; For synonyms
-(use-package synosaurus)
+(use-package synosaurus
+  :ensure t
+  :config
+  (setq synosaurus-backend 'synosaurus-backend-wordnet))
 
 ;; EOF
 (provide 'plugins.el)
