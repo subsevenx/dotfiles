@@ -188,6 +188,9 @@
   :hook
   (dired-mode . nerd-icons-dired-mode))
 
+;; For synonyms
+(use-package synosaurus)
+
 ;; EOF
 (provide 'plugins.el)
 ;;; plugins.el ends here
