@@ -191,8 +191,10 @@
 ;; For synonyms
 (use-package synosaurus
   :ensure t
-  :config
-  (setq synosaurus-backend 'synosaurus-backend-wordnet))
+  :defer t
+  :config (setq synosaurus-backend 'synosaurus-backend-wordnet)
+  :hook (org-mode markdown-mode text-mode gfm-mode rst-mode latex-mode
+                  message-mode mu4e-compose-mode mail-mode TeX-mode))
 
 ;; EOF
 (provide 'plugins.el)
