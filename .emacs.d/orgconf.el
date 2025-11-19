@@ -37,8 +37,9 @@
     (org-indent-mode 1)
     (variable-pitch-mode 1)
     (auto-fill-mode 0)
-    (visual-line-mode 1))
-
+    (visual-line-mode 1)
+    (synosaurus-mode 1))
+  
   (defun org-mode-visual-fill ()
     (setq visual-fill-column-width 120
           visual-fill-column-center-text t)
