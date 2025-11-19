@@ -58,6 +58,8 @@
 	org-ellipsis " ▼"
         org-pretty-entities t
         org-hide-emphasis-markers t
+	org-outline-path-complete-in-steps nil
+	org-refile-use-outline-path 'file
 	org-time-stamp-formats '("<%Y-%m-%d %a>" . "<%Y-%m-%d %a %H:%M:%S>")
 	org-agenda-files
 	'("~/Notes/200.Profressional/200.Professional.Agenda.org"))
