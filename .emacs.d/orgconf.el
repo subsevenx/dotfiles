@@ -58,14 +58,13 @@
 	org-ellipsis " ▼"
         org-pretty-entities t
         org-hide-emphasis-markers t
-	org-refile-allow-creating-parent-nodes 'confirm
+	org-outline-path-complete-in-steps t
 	org-refile-use-outline-path 'file
+	org-outline-path-complete-in-steps nil
+	org-refile-targets '(("~/Notes/200.Profressional/200.Profressional.Agenda.Done.org" :maxlevel . 3))
 	org-time-stamp-formats '("<%Y-%m-%d %a>" . "<%Y-%m-%d %a %H:%M:%S>")
 	org-agenda-files
-	'("~/Notes/200.Profressional/200.Professional.Agenda.org")
-	org-refile-targets '((nil :maxlevel . 3)
-                             (org-agenda-files :maxlevel . 3)
-                             ("~/Notes/200.Profressional/200.Profressional.Agenda.Done.org" :maxlevel . 3)))
+	'("~/Notes/200.Profressional/200.Profressional.Agenda.org"))
 
   ;; Conf: Agenda, keywords, templates.
   (setq org-todo-keywords
