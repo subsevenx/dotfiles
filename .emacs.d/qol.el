@@ -28,6 +28,7 @@
 (global-hl-line-mode t) ; Highlights current line
 (show-paren-mode t) ; Shows the paired parentheses
 (delete-selection-mode t) ; Deletes text on paste. AKA: normal editor behaviour
+(electric-pair-mode t)
 
 ; Disables lines in several modes
 (dolist (mode '(org-mode-hook
@@ -48,6 +49,6 @@
 
 (when *is-a-mac*
   (setq mac-command-modifier 'control)) ;; Using Command as CTRL
-
+(define-key global-map (kbd "RET") 'newline-and-indent)
 (provide 'qol)
 ;;; qol.el ends here
