@@ -30,6 +30,20 @@
 (delete-selection-mode t) ; Deletes text on paste. AKA: normal editor behaviour
 (electric-pair-mode t)
 
+;; Auto indents code that was yanked.
+(dolist (command '(yank yank-pop))
+   (eval `(defadvice ,command (after indent-region activate)
+            (and (not current-prefix-arg)
+                 (member major-mode '(emacs-lisp-mode lisp-mode
+                                                      clojure-mode    scheme-mode
+                                                      haskell-mode    ruby-mode
+                                                      rspec-mode      python-mode
+                                                      c-mode          c++-mode
+                                                      objc-mode       latex-mode
+                                                      plain-tex-mode))
+                 (let ((mark-even-if-inactive transient-mark-mode))
+                   (indent-region (region-beginning) (region-end) nil))))))
+
 ; Disables lines in several modes
 (dolist (mode '(org-mode-hook
                 term-mode-hook
@@ -49,6 +63,8 @@
 
 (when *is-a-mac*
   (setq mac-command-modifier 'control)) ;; Using Command as CTRL
+
 (define-key global-map (kbd "RET") 'newline-and-indent)
+
 (provide 'qol)
 ;;; qol.el ends here
