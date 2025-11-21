@@ -83,18 +83,6 @@
           ("DEFERRED" :foreground "DimGray" :weight bold)
           ("CANCELLED" :foreground "firebrick3" :strike-through t :weight bold))))
 
-(use-package visual-fill-column :defer t)
-
-;; Prefer modern bullets
-(use-package org-superstar
-  :hook (org-mode . org-superstar-mode)
-  :custom
-  (org-superstar-headline-bullets-list '("➀" "➁" "➂" "➃" "➄" "➅" "➆" "➇"))
-  (org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?•) (?- . ?•)))
-  :config
-  (setq org-superstar-leading-bullet ?\s)
-  (setq org-indent-mode-turns-on-hiding-stars nil))
-
 (require 'org-indent)
 
 (provide 'orgconf)

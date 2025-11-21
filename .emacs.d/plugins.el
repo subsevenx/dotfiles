@@ -202,6 +202,19 @@
   :hook (org-mode)
   :config (setq org-appear-autolinks t))
 
+(use-package visual-fill-column :defer t)
+
+;; Prefer modern bullets
+(use-package org-superstar
+  :hook (org-mode . org-superstar-mode)
+  :custom
+  :defer t
+  (org-superstar-headline-bullets-list '("➀" "➁" "➂" "➃" "➄" "➅" "➆" "➇"))
+  (org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?•) (?- . ?•)))
+  :config
+  (setq org-superstar-leading-bullet ?\s)
+  (setq org-indent-mode-turns-on-hiding-stars nil))
+
 ;; EOF
 (provide 'plugins.el)
 ;;; plugins.el ends here
