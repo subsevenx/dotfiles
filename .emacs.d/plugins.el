@@ -196,6 +196,12 @@
   :hook (org-mode markdown-mode text-mode gfm-mode rst-mode latex-mode
                   message-mode mu4e-compose-mode mail-mode TeX-mode))
 
+(use-package org-appear
+  :ensure t
+  :defer t
+  :hook (org-mode)
+  :config (setq org-appear-autolinks t))
+
 ;; EOF
 (provide 'plugins.el)
 ;;; plugins.el ends here
