@@ -64,6 +64,8 @@
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
+(use-package sly)
+
 ;; Minibuffer enhancements
 (use-package marginalia
   :ensure t
@@ -207,8 +209,8 @@
 ;; Prefer modern bullets
 (use-package org-superstar
   :hook (org-mode . org-superstar-mode)
-  :custom
   :defer t
+  :custom
   (org-superstar-headline-bullets-list '("➀" "➁" "➂" "➃" "➄" "➅" "➆" "➇"))
   (org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?•) (?- . ?•)))
   :config
