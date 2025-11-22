@@ -7,7 +7,7 @@ REQUIRED_PACKAGES=("fortune" "cowsay" "lolcat")
 # Lazy and Personal
 # :Shortcuts
 alias please='sudo $(history -p !!)'
-alias ls='ls --group-directories-first --color=auto'
+alias ls='ls -la --color=auto'
 alias grep='grep --color=auto'
 alias ll='ls -AhlF --group-directories-first'
 alias ..='cd ..'
