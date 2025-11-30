@@ -1,3 +1,5 @@
+# export PATH="$HOME/Apps/homebrew/bin:$PATH" #Work specific
+
 ### ENV ###
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -42,9 +44,20 @@ add-zsh-hook precmd vcs_info
 add-zsh-hook preexec _ts_preexec
 add-zsh-hook precmd  _ts_precmd
 
-# syntax/suggestions
-[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ] && . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# hook to get possible paths for extensions, have to do this cause I use multiple OSes
+source_first() {
+  for f in "$@"; do [[ -f $f ]] && { source "$f"; return 0 }; done
+  return 1
+}
+
+for plugin in zsh-autosuggestions zsh-syntax-highlighting; do
+  source_first \
+    /usr/share/zsh/plugins/$plugin/$plugin.zsh \
+    /usr/share/$plugin/$plugin.zsh \
+    ${HOMEBREW_PREFIX:-/opt/homebrew}/share/$plugin/$plugin.zsh \
+    /usr/local/share/$plugin/$plugin.zsh \
+    $HOME/Apps/homebrew/share/$plugin/$plugin.zsh
+done
 
 typeset -gA ZSH_HIGHLIGHT_STYLES || true
 ZSH_HIGHLIGHT_STYLES[alias]=fg=cyan
