@@ -61,7 +61,7 @@
 	org-outline-path-complete-in-steps t
 	org-refile-use-outline-path 'file
 	org-outline-path-complete-in-steps nil
-	org-refile-targets '(("~/Notes/200.Profressional/200.Profressional.Agenda.Done.org" :maxlevel . 3))
+	org-refile-targets '(("~/Notes/200.Profressional/200.Professional.Agenda.Done.org" :maxlevel . 3))
 	org-time-stamp-formats '("<%Y-%m-%d %a>" . "<%Y-%m-%d %a %H:%M:%S>")
 	org-agenda-files
 	'("~/Notes/200.Profressional/200.Profressional.Agenda.org"))
