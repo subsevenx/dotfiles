@@ -21,8 +21,15 @@
 (setq use-package-always-ensure t)
 
 ;; GUI settings
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file 'noerror)
+(setq custom-file (locate-user-emacs-file "~/.emacs.d/custom.el"))
+(load custom-file :no-error-if-file-is-missing)
+
+;; Mute warnings
+
+(add-to-list 'display-buffer-alist
+             '("\\`\\*\\(Warnings\\|Compile-Log\\)\\*\\'"
+               (display-buffer-no-window)
+               (allow-no-window . t)))
 
 ;; Initialize quality of life settings
 (load-file "~/.emacs.d/qol.el")
