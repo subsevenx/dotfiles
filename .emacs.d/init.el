@@ -47,7 +47,7 @@
 ;; Local File
 (load-file "~/.emacs.d/personal.el")
 
-(setq personal-file (locate-user-emacs-file("~/.emacs.d/personal.el"))
+(setq personal-file (locate-user-emacs-file "personal.el"))
 (load personal-file :no-error-if-file-is-missing)
 
 ;; EOF
