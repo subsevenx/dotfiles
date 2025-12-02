@@ -9,6 +9,7 @@ custom.el
 .emacs.d/url/
 .emacs.d/backup/
 .emacs.d/eshell/
+.emacs.d/personal.el
 
 *.elc
 
