@@ -7,13 +7,6 @@
 ;;; Code:
 
 ;; Store temp files in a cache
-(setq user-emacs-directory "~/.cache/emacs")
-
-(use-package no-littering)
-
-(setq auto-save-file-name-transforms
-      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
-
 (use-package auto-package-update
   :custom
   (auto-package-update-interval 7)
