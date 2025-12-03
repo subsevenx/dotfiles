@@ -55,6 +55,10 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p) ; Cuts down the alias to y or n
 
+;; Program Overwrites
+(setq grep-command "rg -nS --no-heading "
+      grep-use-null-device nil)
+
 ;; Custom Key Bindings
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
