@@ -7,8 +7,8 @@ REQUIRED_PACKAGES=("fortune" "cowsay" "lolcat")
 # Lazy and Personal
 # :Shortcuts
 alias please='sudo $(history -p !!)'
-alias ls='ls -la --color=auto'
-alias grep='grep --color=auto'
+alias ls='ls -la'
+alias grep='grep'
 alias ll='ls -AhlF --group-directories-first'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -25,7 +25,7 @@ alias vf='cd'
 alias xd='cd'
 
 # Shell Utilities
-alias bashexe='source ~/.bashrc'
+alias bashexe='source ~/.zshrc'
 alias exe='exec "$SHELL" -l'
 alias hidden='ls -d .[!.]*'
 
