@@ -26,6 +26,13 @@
    use-package-always-ensure t
    use-package-verbose t))
 
+;; Straight for git repos
+(use-package org-super-links
+  :straight (org-super-links :type git :host github :repo "toshism/org-super-links" :branch "develop")
+  :bind (("C-c s s" . org-super-links-link)
+         ("C-c s l" . org-super-links-store-link)
+         ("C-c s C-l" . org-super-links-insert-link)))
+
 ;; HS Mode Preferences
 (use-package hideshow
   :ensure nil
@@ -153,18 +160,6 @@
          . jinx-mode)
   :bind (("C-+" . jinx-correct)
          ("C-M-+" . jinx-languages)))
-
-;; Projectile
-(use-package projectile
-  :diminish projectile-mode
-  :config (projectile-mode t)
-  :custom ((projectile-completion-system 'default))
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
-  :init
-  (when (file-directory-p "~/Development/")
-    (setq projectile-project-search-path '("~/Development/")))
-  (setq projectile-switch-project-action #'projectile-dired))
 
 ;; All the Icons
 (when (display-graphic-p)
