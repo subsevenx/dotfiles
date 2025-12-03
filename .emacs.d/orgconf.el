@@ -2,7 +2,6 @@
 ;;; Commentary: Configuration for my org mode.
 ;;; Code:
 (use-package org
-  :pin org
   :preface
   ;; Font set-up
   (defun org-font-setup ()
