@@ -217,8 +217,6 @@
   (setq org-superstar-leading-bullet ?\s)
   (setq org-indent-mode-turns-on-hiding-stars nil))
 
-(use-package org-roam)
-
 ;; EOF
 (provide 'plugins.el)
 ;;; plugins.el ends here
