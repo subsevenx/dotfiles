@@ -27,11 +27,21 @@
    use-package-verbose t))
 
 ;; Straight for git repos
-(use-package org-super-links
-  :straight (org-super-links :type git :host github :repo "toshism/org-super-links" :branch "develop")
-  :bind (("C-c s s" . org-super-links-link)
-         ("C-c s l" . org-super-links-store-link)
-         ("C-c s C-l" . org-super-links-insert-link)))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
 ;; HS Mode Preferences
 (use-package hideshow
@@ -211,6 +221,12 @@
   :config
   (setq org-superstar-leading-bullet ?\s)
   (setq org-indent-mode-turns-on-hiding-stars nil))
+
+(use-package org-super-links :defer t
+  :straight (org-super-links :type git :host github :repo "toshism/org-super-links" :branch "develop")
+  :bind (("C-c s s" . org-super-links-link)
+         ("C-c s l" . org-super-links-store-link)
+         ("C-c s C-l" . org-super-links-insert-link)))
 
 ;; EOF
 (provide 'plugins.el)
