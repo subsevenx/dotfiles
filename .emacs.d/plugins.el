@@ -26,13 +26,6 @@
    use-package-always-ensure t
    use-package-verbose t))
 
-;; Straight for git repos
-(use-package org-super-links
-  :straight (org-super-links :type git :host github :repo "toshism/org-super-links" :branch "develop")
-  :bind (("C-c s s" . org-super-links-link)
-         ("C-c s l" . org-super-links-store-link)
-         ("C-c s C-l" . org-super-links-insert-link)))
-
 ;; HS Mode Preferences
 (use-package hideshow
   :ensure nil
@@ -212,6 +205,11 @@
   (setq org-superstar-leading-bullet ?\s)
   (setq org-indent-mode-turns-on-hiding-stars nil))
 
+(use-package org-super-links
+  :vc (:url "https://github.com/toshism/org-super-links" :branch "develop" :rev :newest)
+  :bind (("C-c s s" . org-super-links-link)
+         ("C-c s l" . org-super-links-store-link)
+         ("C-c s C-l" . org-super-links-insert-link)))
 ;; EOF
 (provide 'plugins.el)
 ;;; plugins.el ends here
