@@ -5,27 +5,6 @@
 ;;; Provides package configuration
 
 ;;; Code:
-
-;; Straight for git repos
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name
-        "straight/repos/straight.el/bootstrap.el"
-        (or (bound-and-true-p straight-base-dir)
-            user-emacs-directory)))
-      (bootstrap-version 7))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-(straight-use-package 'use-package)
-(setq straight-use-package-by-default t)
-
 (setq user-emacs-directory "~/.cache/emacs")
 (use-package no-littering)
 (setq auto-save-file-name-transforms
@@ -33,7 +12,6 @@
 
 ;; HS Mode Preferences
 (use-package hideshow
-  :ensure nil
   :init
   (setq hs-minor-mode-map
         (let ((map (make-sparse-keymap)))
@@ -48,7 +26,6 @@
 
 ;; Doom Bar
 (use-package doom-modeline
-  :ensure t
   :init (doom-modeline-mode 1)
   :config
   (setq doom-modeline-minor-modes t
@@ -73,7 +50,6 @@
 
 ;; Minibuffer enhancements
 (use-package marginalia
-  :ensure t
   :custom
   (marginalia-max-relative-age 0)
   (marginalia-align 'right)
@@ -81,7 +57,6 @@
 
 ;; Minibuffer completions
 (use-package vertico
-  :ensure t
   :custom
   (vertico-count 15)
   (vertico-resize t)
@@ -89,7 +64,6 @@
 
 ;; Completion style
 (use-package orderless
-  :ensure t
   :config
   (setq completion-styles '(orderless))
   (setq completion-category-defaults nil)
@@ -169,30 +143,25 @@
   :init
   (all-the-icons-completion-mode))
 
-(use-package nerd-icons
-  :ensure t)
+(use-package nerd-icons)
 
 (use-package nerd-icons-completion
-  :ensure t
   :after marginalia
   :config
   (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
 (use-package nerd-icons-dired
-  :ensure t
   :hook
   (dired-mode . nerd-icons-dired-mode))
 
 ;; For synonyms
 (use-package synosaurus
-  :ensure t
   :defer t
   :config (setq synosaurus-backend 'synosaurus-backend-wordnet)
   :hook (org-mode markdown-mode text-mode gfm-mode rst-mode latex-mode
                   message-mode mu4e-compose-mode mail-mode TeX-mode))
 
 (use-package org-appear
-  :ensure t
   :defer t
   :hook (org-mode)
   :config (setq org-appear-autolinks t))
