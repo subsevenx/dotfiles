@@ -203,6 +203,12 @@
   :bind (("C-c s s" . org-super-links-link)
          ("C-c s l" . org-super-links-store-link)
          ("C-c s C-l" . org-super-links-insert-link)))
-;; EOF
+
+(use-package w3m)
+
+(use-package poetry
+  :vc (:url "https://github.com/subsevenx/poetry.el" :branch "main" :rev :newest))
+
+;; Eof
 (provide 'plugins.el)
 ;;; plugins.el ends here
