@@ -5,13 +5,37 @@
 ;;; Provides package configuration
 
 ;;; Code:
+
+;; Store temp files in a cache
 (setq user-emacs-directory "~/.cache/emacs")
+
 (use-package no-littering)
+
 (setq auto-save-file-name-transforms
-    `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+
+(use-package auto-package-update
+  :custom
+  (auto-package-update-interval 7)
+  (auto-package-update-prompt-before-update t)
+  (auto-package-update-hide-results t)
+  :config
+  (auto-package-update-maybe)
+  (auto-package-update-at-time "09:00")
+  (setq
+   use-package-always-ensure t
+   use-package-verbose t))
+
+;; Straight for git repos
+(use-package org-super-links
+  :straight (org-super-links :type git :host github :repo "toshism/org-super-links" :branch "develop")
+  :bind (("C-c s s" . org-super-links-link)
+         ("C-c s l" . org-super-links-store-link)
+         ("C-c s C-l" . org-super-links-insert-link)))
 
 ;; HS Mode Preferences
 (use-package hideshow
+  :ensure nil
   :init
   (setq hs-minor-mode-map
         (let ((map (make-sparse-keymap)))
@@ -26,6 +50,7 @@
 
 ;; Doom Bar
 (use-package doom-modeline
+  :ensure t
   :init (doom-modeline-mode 1)
   :config
   (setq doom-modeline-minor-modes t
@@ -50,6 +75,7 @@
 
 ;; Minibuffer enhancements
 (use-package marginalia
+  :ensure t
   :custom
   (marginalia-max-relative-age 0)
   (marginalia-align 'right)
@@ -57,6 +83,7 @@
 
 ;; Minibuffer completions
 (use-package vertico
+  :ensure t
   :custom
   (vertico-count 15)
   (vertico-resize t)
@@ -64,6 +91,7 @@
 
 ;; Completion style
 (use-package orderless
+  :ensure t
   :config
   (setq completion-styles '(orderless))
   (setq completion-category-defaults nil)
@@ -143,25 +171,30 @@
   :init
   (all-the-icons-completion-mode))
 
-(use-package nerd-icons)
+(use-package nerd-icons
+  :ensure t)
 
 (use-package nerd-icons-completion
+  :ensure t
   :after marginalia
   :config
   (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
 
 (use-package nerd-icons-dired
+  :ensure t
   :hook
   (dired-mode . nerd-icons-dired-mode))
 
 ;; For synonyms
 (use-package synosaurus
+  :ensure t
   :defer t
   :config (setq synosaurus-backend 'synosaurus-backend-wordnet)
   :hook (org-mode markdown-mode text-mode gfm-mode rst-mode latex-mode
                   message-mode mu4e-compose-mode mail-mode TeX-mode))
 
 (use-package org-appear
+  :ensure t
   :defer t
   :hook (org-mode)
   :config (setq org-appear-autolinks t))
@@ -178,12 +211,6 @@
   :config
   (setq org-superstar-leading-bullet ?\s)
   (setq org-indent-mode-turns-on-hiding-stars nil))
-
-(use-package org-super-links :defer t
-  :straight (org-super-links :type git :host github :repo "toshism/org-super-links" :branch "develop")
-  :bind (("C-c s s" . org-super-links-link)
-         ("C-c s l" . org-super-links-store-link)
-         ("C-c s C-l" . org-super-links-insert-link)))
 
 ;; EOF
 (provide 'plugins.el)
