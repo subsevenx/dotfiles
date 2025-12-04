@@ -40,8 +40,8 @@
   :init (doom-modeline-mode 1)
   :config
   (setq doom-modeline-minor-modes t
-	doom-modeline-height 20
-	doom-modeline-bar-width 3))
+	doom-modeline-height 15
+	doom-modeline-bar-width 2))
 
 ;; Which Key
 (use-package which-key
@@ -204,7 +204,7 @@
          ("C-c s l" . org-super-links-store-link)
          ("C-c s C-l" . org-super-links-insert-link)))
 
-(use-package w3m)
+(use-package w3m :defer t)
 
 (use-package poetry
   :vc (:url "https://github.com/subsevenx/poetry.el" :branch "main" :rev :newest))
