@@ -45,11 +45,8 @@
     (visual-fill-column-mode 1))
   
   :hook ((org-mode . org-mode-setup)
-         (org-mode . org-mode-visual-fill)
-         (org-mode . (lambda ()
-                       (font-lock-add-keywords
-                        nil '(("^ *\\([-]\\) "
-                               (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))))
+         (org-mode . org-mode-visual-fill))
+
   :config
   (setq org-log-into-drawer t
 	org-log-done 'time

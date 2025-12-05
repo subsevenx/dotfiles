@@ -191,12 +191,14 @@
 (use-package org-superstar
   :hook (org-mode . org-superstar-mode)
   :defer t
-  :custom
-  (org-superstar-headline-bullets-list '("➀" "➁" "➂" "➃" "➄" "➅" "➆" "➇"))
-  (org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?•) (?- . ?•)))
   :config
-  (setq org-superstar-leading-bullet ?\s)
-  (setq org-indent-mode-turns-on-hiding-stars nil))
+  (setq org-superstar-item-bullet-alist
+        '((?* . ?•)
+          (?+ . ?•)
+          (?- . ?‣))
+	org-indent-mode-turns-on-hiding-stars nil
+	org-superstar-headline-bullets-list '("➀" "➁" "➂" "➃" "➄" "➅" "➆" "➇")
+	))
 
 (use-package org-super-links
   :vc (:url "https://github.com/toshism/org-super-links" :branch "develop" :rev :newest)
@@ -204,7 +206,7 @@
          ("C-c s l" . org-super-links-store-link)
          ("C-c s C-l" . org-super-links-insert-link)))
 
-(use-package w3m :defer t)
+(use-package w3m)
 
 (use-package poetry
   :vc (:url "https://github.com/subsevenx/poetry.el" :branch "main" :rev :newest))
