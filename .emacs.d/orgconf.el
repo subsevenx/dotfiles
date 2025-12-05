@@ -78,7 +78,14 @@
           ("NOTE" :foreground "MediumBlue" :weight normal)
           ("DONE" :foreground "MediumSpringGreen" :weight bold)
           ("DEFERRED" :foreground "DimGray" :weight bold)
-          ("CANCELLED" :foreground "firebrick3" :strike-through t :weight bold))))
+          ("CANCELLED" :foreground "firebrick3" :strike-through t :weight bold)))
+
+ :bind (:map org-mode-map
+	     ("C-c C-}" . org-timestamp-up-day)
+	     ("C-c C-{" . org-timestamp-down-day)))
+
+;; save active buffers when triggering refile
+(advice-add 'org-refile :after 'org-save-all-org-buffers)
 
 (require 'org-indent)
 
