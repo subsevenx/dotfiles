@@ -201,7 +201,7 @@
 	))
 
 (use-package org-super-links
-  :vc (:url "https://github.com/toshism/org-super-links" :branch "develop" :rev :newest)
+  :vc (:url "https://github.com/toshism/org-super-links" :branch "develop")
   :bind (("C-c s s" . org-super-links-link)
          ("C-c s l" . org-super-links-store-link)
          ("C-c s C-l" . org-super-links-insert-link)))
@@ -209,7 +209,7 @@
 (use-package w3m)
 
 (use-package poetry
-  :vc (:url "https://github.com/subsevenx/poetry.el" :branch "main" :rev :newest))
+  :vc (:url "https://github.com/subsevenx/poetry.el" :branch "main"))
 
 ;; Eof
 (provide 'plugins.el)
