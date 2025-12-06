@@ -43,6 +43,14 @@
     (setq visual-fill-column-width 120
           visual-fill-column-center-text t)
     (visual-fill-column-mode 1))
+
+
+  (defun org-set-created-prop ()
+    (when (and org-state
+               (or (null org-last-state)
+                   (string= org-last-state "")))
+      (org-set-property "CREATED"
+			(format-time-string "[%Y-%m-%d %a %H:%M:%S]"))))
   
   :hook ((org-mode . org-mode-setup)
          (org-mode . org-mode-visual-fill))
@@ -79,6 +87,8 @@
           ("DONE" :foreground "MediumSpringGreen" :weight bold)
           ("DEFERRED" :foreground "DimGray" :weight bold)
           ("CANCELLED" :foreground "firebrick3" :strike-through t :weight bold)))
+
+  (add-hook 'org-after-todo-state-change-hook #'org-set-created-prop)
 
  :bind (:map org-mode-map
 	     ("C-c C-}" . org-timestamp-up-day)
