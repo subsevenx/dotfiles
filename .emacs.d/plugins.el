@@ -202,9 +202,11 @@
 
 (use-package org-super-links
   :vc (:url "https://github.com/toshism/org-super-links" :branch "develop")
-  :bind (("C-c s s" . org-super-links-link)
-         ("C-c s l" . org-super-links-store-link)
-         ("C-c s C-l" . org-super-links-insert-link)))
+  :bind (("C-c s C-l" . org-super-links-link)
+	 ("C-c s C-i" . org-super-links-quick-insert-inline-link)
+	 ("C-c s d" . org-super-links-quick-insert-drawer-link)
+         ("C-c s s" . org-super-links-store-link)
+         ("C-c s i" . org-super-links-insert-link)))
 
 (use-package w3m)
 
