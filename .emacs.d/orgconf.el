@@ -59,11 +59,11 @@
 	org-refile-use-outline-path 'file
 	org-outline-path-complete-in-steps nil
 	org-refile-targets
-	'(("~/Notes/200.Professional/200.Professional.Agenda.Done.org" :maxlevel . 3))
+	'(("~/Notes/200.Professional/200.Professional.Agenda.Done.org" :maxlevel . 1))
 	org-time-stamp-formats
 	'("<%Y-%m-%d %a>" . "<%Y-%m-%d %a %H:%M:%S>")
 	org-agenda-files
-	'("~/Notes/200.Professional/200.Professional.Agenda.org")
+	'("~/notes/current/200.Professional/200.Professional.Agenda.org")
 	org-todo-keywords
 	'((sequence "TODO(t!)" "MAYBE(m!)" "WAITING(w!)" "NEXT(n!)" "STARTED(s!)"
                     "|" "DONE(d!)" "DEFERRED(f@)" "CANCELLED(c@)")
@@ -88,7 +88,6 @@
 (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
 (require 'org-indent)
-(require 'org-capture)
 
 (provide 'orgconf)
 
