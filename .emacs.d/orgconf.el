@@ -87,6 +87,9 @@
 ;; save active buffers when triggering refile
 (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
+(require 'org-id)
+(setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
+
 (require 'org-indent)
 
 (provide 'orgconf)
