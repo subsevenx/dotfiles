@@ -44,19 +44,32 @@
           visual-fill-column-center-text t)
     (visual-fill-column-mode 1))
 
-
   (defun org-set-created-prop ()
     (when (and org-state
                (or (null org-last-state)
                    (string= org-last-state "")))
       (org-set-property "CREATED"
 			(format-time-string "[%Y-%m-%d %a %H:%M:%S]"))))
+
+  (defun org-delete-first-logbook ()
+    (when (and org-state
+               (or (null org-last-state)
+                   (string= org-last-state "")))
+      (run-at-time 0.1 nil
+		   (lambda ()
+		     (save-excursion
+		       (org-back-to-heading t)
+		       (let ((end (save-excursion (outline-next-heading) (point))))
+			 (when (re-search-forward "^[ \t]*:LOGBOOK:" end t)
+			   (let ((drawer-start (line-beginning-position)))
+			     (when (re-search-forward "^[ \t]*:END:" end t)
+			       (delete-region drawer-start (1+ (line-end-position))))))))))))
   
   :hook ((org-mode . org-mode-setup)
          (org-mode . org-mode-visual-fill))
 
   :config
-  (setq org-log-into-drawer t
+  (setq org-log-into-drawer t 
 	org-log-done 'time
 	org-log-repeat 'time
 	org-log-states-order-reversed t
@@ -89,6 +102,7 @@
           ("CANCELLED" :foreground "firebrick3" :strike-through t :weight bold)))
 
   (add-hook 'org-after-todo-state-change-hook #'org-set-created-prop)
+  (add-hook 'org-after-todo-state-change-hook #'org-delete-first-logbook)
 
  :bind (:map org-mode-map
 	     ("C-c C-}" . org-timestamp-up-day)
