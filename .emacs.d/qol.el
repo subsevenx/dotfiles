@@ -46,11 +46,11 @@
 
 ; Disables lines in several modes
 (dolist (mode '(org-mode-hook
-                term-mode-hook
+		term-mode-hook
                 shell-mode-hook
                 eshell-mode-hook
 		dired-mode-hook
-		))
+		markdown-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 (defalias 'yes-or-no-p 'y-or-n-p) ; Cuts down the alias to y or n
