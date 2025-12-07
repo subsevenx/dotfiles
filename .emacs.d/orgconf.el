@@ -67,25 +67,27 @@
 			     (when (re-search-forward "^[ \t]*:END:" end t)
 			       (delete-region drawer-start (1+ (line-end-position))))))))))))
 
-  ;; These functions were taken from: https://howardism.org/Technical/Emacs/journaling-org.html
-  ;; They have been slightly modified.
+  ;; These functions are based on: https://howardism.org/Technical/Emacs/journaling-org.html
+  ;; They have been modified to instead use a single file for the day and then sub-entries are timestamps.
   ;; This is an in-progress experiment to see what type of journaling setup works for me.
   (defun get-journal-file-today ()
     "Return filename for today's journal entry."
-    (let ((daily-name (format-time-string "%Y-%m-%d-%H%M%S")))
+    (let ((daily-name (format-time-string "%Y-%m-%d")))
       (expand-file-name (concat org-journal-dir daily-name ".journal.org"))))
 
   (defun journal-file-today ()
     "Create and load a journal file based on today's date."
     (interactive)
     (find-file (get-journal-file-today))
-    (when (= (buffer-size) 0) ;; if the buffer is empty, insert.
-      (journal-file-insert)))
+    (if (= (buffer-size) 0) ;; if the buffer is empty, insert.
+	(journal-file-insert)
+      (journal-entry-insert)))
 
-  (defun journal-file-insert ()
-    "Insert the journal heading using yasnippet."
+  (defun journal-entry-insert ()
+    "Insert a new journal entry heading with timestamp."
     (interactive)
-    (yas-expand-snippet (yas-lookup-snippet "Journal Template" 'org-mode)))
+    (goto-char (point-max))
+    (yas-expand-snippet (yas-lookup-snippet "Journal Entry" 'org-mode)))
   
   :hook ((org-mode . org-mode-setup)
          (org-mode . org-mode-visual-fill))
@@ -130,12 +132,12 @@
   ;; Hook custom functions
   (add-hook 'org-after-todo-state-change-hook #'org-set-created-prop)
   (add-hook 'org-after-todo-state-change-hook #'org-delete-first-logbook)
+  (global-set-key (kbd "C-c n j") 'journal-file-today)
 
  :bind (:map org-mode-map
 	     ("C-c C-}" . org-timestamp-up-day)
 	     ("C-c C-{" . org-timestamp-down-day)
-	     ("C-c c" . org-capture)
-	     ("C-c f j" . journal-file-today)))
+	     ("C-c c" . org-capture)))
 
 ;; save active buffers when triggering refile
 (advice-add 'org-refile :after 'org-save-all-org-buffers)
