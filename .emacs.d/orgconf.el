@@ -71,12 +71,14 @@
          (org-mode . org-mode-visual-fill))
 
   :config
+  
   (setq org-log-into-drawer t
 	org-log-done 'time
 	org-log-repeat 'time
 	org-log-states-order-reversed t
 	org-ellipsis " ▼"
         org-pretty-entities t
+	org-hide-leading-stars t
         org-hide-emphasis-markers t
 	org-outline-path-complete-in-steps t
 	org-refile-use-outline-path 'file
