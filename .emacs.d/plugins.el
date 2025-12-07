@@ -129,7 +129,9 @@
 
 (use-package yasnippet
   :config
-  (yas-global-mode 1))
+
+  (setq yas-snippet-dirs
+	'("~/.emacs.d/snippets")))
 
 ;; Better help menus
 (use-package helpful
