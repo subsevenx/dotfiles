@@ -66,12 +66,28 @@
 			   (let ((drawer-start (line-beginning-position)))
 			     (when (re-search-forward "^[ \t]*:END:" end t)
 			       (delete-region drawer-start (1+ (line-end-position))))))))))))
+
+  ;; These functions were taken from: https://howardism.org/Technical/Emacs/journaling-org.html
+  ;; They have been slightly modified.
+  ;; This is an in-progress experiment to see what type of journaling setup works for me.
+  (defun get-journal-file-today ()
+    "Return filename for today's journal entry."
+    (let ((daily-name (format-time-string "%Y-%m-%d-%H-%S")))
+      (expand-file-name (concat org-journal-dir daily-name ".org"))))
+
+  (defun journal-file-today ()
+    "Create and load a journal file based on today's date."
+    (interactive)
+    (find-file (get-journal-file-today)))
   
   :hook ((org-mode . org-mode-setup)
          (org-mode . org-mode-visual-fill))
 
   :config
-  
+  ;; Journaling Options
+  (setq org-journal-dir "~/notes/current/100.Personal/")
+
+  ;; Core Org Options
   (setq org-log-into-drawer t
 	org-log-done 'time
 	org-log-repeat 'time
@@ -111,7 +127,8 @@
  :bind (:map org-mode-map
 	     ("C-c C-}" . org-timestamp-up-day)
 	     ("C-c C-{" . org-timestamp-down-day)
-	     ("C-c c" . org-capture)))
+	     ("C-c c" . org-capture)
+	     ("C-c f j" . journal-file-today)))
 
 ;; save active buffers when triggering refile
 (advice-add 'org-refile :after 'org-save-all-org-buffers)
