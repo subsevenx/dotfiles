@@ -72,13 +72,20 @@
   ;; This is an in-progress experiment to see what type of journaling setup works for me.
   (defun get-journal-file-today ()
     "Return filename for today's journal entry."
-    (let ((daily-name (format-time-string "%Y-%m-%d-%H-%M-%S")))
-      (expand-file-name (concat org-journal-dir daily-name ".org"))))
+    (let ((daily-name (format-time-string "%Y-%m-%d-%H%M%S")))
+      (expand-file-name (concat org-journal-dir daily-name ".journal.org"))))
 
   (defun journal-file-today ()
     "Create and load a journal file based on today's date."
     (interactive)
-    (find-file (get-journal-file-today)))
+    (find-file (get-journal-file-today))
+    (when (= (buffer-size) 0) ;; if the buffer is empty, insert.
+      (journal-file-insert)))
+
+  (defun journal-file-insert ()
+    "Insert the journal heading using yasnippet."
+    (interactive)
+    (yas-expand-snippet (yas-lookup-snippet "Journal Template" 'org-mode)))
   
   :hook ((org-mode . org-mode-setup)
          (org-mode . org-mode-visual-fill))
