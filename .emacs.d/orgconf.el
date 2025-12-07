@@ -110,7 +110,8 @@
 
  :bind (:map org-mode-map
 	     ("C-c C-}" . org-timestamp-up-day)
-	     ("C-c C-{" . org-timestamp-down-day)))
+	     ("C-c C-{" . org-timestamp-down-day)
+	     ("C-c c" . org-capture)))
 
 ;; save active buffers when triggering refile
 (advice-add 'org-refile :after 'org-save-all-org-buffers)
