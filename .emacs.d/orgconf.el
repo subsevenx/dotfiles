@@ -79,10 +79,15 @@
     "Create and load a journal file based on today's date."
     (interactive)
     (find-file (get-journal-file-today))
-    (if (= (buffer-size) 0) ;; if the buffer is empty, insert.
+    (if (= (buffer-size) 0)
 	(journal-file-insert)
       (journal-entry-insert)))
 
+  (defun journal-file-insert ()
+    "Insert the journal heading using yasnippet."
+    (interactive)
+    (yas-expand-snippet (yas-lookup-snippet "Journal Template" 'org-mode)))
+  
   (defun journal-entry-insert ()
     "Insert a new journal entry heading with timestamp."
     (interactive)
