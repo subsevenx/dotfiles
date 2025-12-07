@@ -127,6 +127,10 @@
   (add-hook 'prog-mode-hook 'flycheck-mode) ;; lint always-on
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+
 ;; Better help menus
 (use-package helpful
   :commands (helpful-callable helpful-variable helpful-command helpful-key)
