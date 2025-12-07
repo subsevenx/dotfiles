@@ -45,6 +45,7 @@
     (visual-fill-column-mode 1))
 
   (defun org-set-created-prop ()
+    """Sets creation date of task when initial status keyword is set"""
     (when (and org-state
                (or (null org-last-state)
                    (string= org-last-state "")))
@@ -52,6 +53,7 @@
 			(format-time-string "[%Y-%m-%d %a %H:%M:%S]"))))
 
   (defun org-delete-first-logbook ()
+    """Deletes first logbook drawer"""
     (when (and org-state
                (or (null org-last-state)
                    (string= org-last-state "")))
@@ -69,7 +71,7 @@
          (org-mode . org-mode-visual-fill))
 
   :config
-  (setq org-log-into-drawer t 
+  (setq org-log-into-drawer t
 	org-log-done 'time
 	org-log-repeat 'time
 	org-log-states-order-reversed t
@@ -88,9 +90,8 @@
 	org-todo-keywords
 	'((sequence "TODO(t!)" "MAYBE(m!)" "WAITING(w!)" "NEXT(n!)" "STARTED(s!)"
                     "|" "DONE(d!)" "DEFERRED(f@)" "CANCELLED(c@)")
-          (sequence "NOTE(o)" "|")))
-
-  (setq org-todo-keyword-faces
+          (sequence "NOTE(o)" "|"))
+	org-todo-keyword-faces
 	'(("TODO" :foreground "DarkOrange" :weight bold)
           ("MAYBE" :foreground "plum2" :weight bold)
           ("WAITING" :foreground "gold" :weight bold)
@@ -101,6 +102,7 @@
           ("DEFERRED" :foreground "DimGray" :weight bold)
           ("CANCELLED" :foreground "firebrick3" :strike-through t :weight bold)))
 
+  ;; Hook custom functions
   (add-hook 'org-after-todo-state-change-hook #'org-set-created-prop)
   (add-hook 'org-after-todo-state-change-hook #'org-delete-first-logbook)
 
