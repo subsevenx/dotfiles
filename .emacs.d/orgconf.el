@@ -72,7 +72,7 @@
   ;; This is an in-progress experiment to see what type of journaling setup works for me.
   (defun get-journal-file-today ()
     "Return filename for today's journal entry."
-    (let ((daily-name (format-time-string "%Y-%m-%d-%H-%S")))
+    (let ((daily-name (format-time-string "%Y-%m-%d-%H-%M-%S")))
       (expand-file-name (concat org-journal-dir daily-name ".org"))))
 
   (defun journal-file-today ()
