@@ -106,26 +106,44 @@
      orderless-initialism
      orderless-regexp)))
 
-;; Package for interacting with language servers
-(use-package lsp-mode)
+;; PHP mode
+(use-package php-mode
+  :mode "\\.php\\'")
+
+;; LSP mode for PHP
+(use-package lsp-mode
+  :hook (php-mode . lsp-deferred)
+  :custom
+  (lsp-keymap-prefix "C-c l")
+  :commands (lsp lsp-deferred))
+
+;; Optional: LSP UI
+(use-package lsp-ui
+  :commands lsp-ui-mode)
 
 ;; Completion suggestions
 (use-package corfu
-  :ensure t
-  :hook (after-init . global-corfu-mode)
-  :bind (:map corfu-map ("<tab>" . corfu-complete))
+  :custom
+  (corfu-auto t)
+  (corfu-cycle t)
+  (tab-always-indent 'complete)
+  (corfu-popupinfo-delay '(1.25 . 0.5))
+  (corfu-popupinfo-mode 1)
+			 
   :config
-  (setq tab-always-indent 'complete)
-  (setq corfu-preview-current nil)
-  (setq corfu-min-width 20)
-
-  (setq corfu-popupinfo-delay '(1.25 . 0.5))
-  (corfu-popupinfo-mode 1) ; shows documentation after `corfu-popupinfo-delay'
-
-  ;; Sort by input history (no need to modify `corfu-sort-function').
   (with-eval-after-load 'savehist
-    (corfu-history-mode 1)
-    (add-to-list 'savehist-additional-variables 'corfu-history)))
+	     (corfu-history-mode 1)
+	     (add-to-list 'savehist-additional-variables 'corfu-history))
+  :bind
+  (:map corfu-map
+        ("TAB" . corfu-next)
+        ("C-n" . corfu-next)
+        ([tab] . corfu-next)
+        ("C-p" . corfu-previous)
+        ("S-TAB" . corfu-previous)
+        ([backtab] . corfu-previous))
+  :init
+  (global-corfu-mode))
 
 (use-package flycheck
   :config
