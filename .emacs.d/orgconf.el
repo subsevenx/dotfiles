@@ -137,8 +137,8 @@
   ;; Hook custom functions
   (add-hook 'org-after-todo-state-change-hook #'org-set-created-prop)
   (add-hook 'org-after-todo-state-change-hook #'org-delete-first-logbook)
-  (global-set-key (kbd "C-c n j") 'journal-file-today)
-
+  (global-set-key (kbd "C-c j n") 'journal-file-today)
+  
  :bind (:map org-mode-map
 	     ("C-c C-}" . org-timestamp-up-day)
 	     ("C-c C-{" . org-timestamp-down-day)
