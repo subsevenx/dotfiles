@@ -34,6 +34,23 @@
           map))
   :hook (prog-mode . hs-minor-mode))
 
+;; Dired config
+(use-package dired
+  :ensure nil
+  :commands (dired)
+  :hook
+  (dired-mode . dired-hide-details-mode)
+  :config
+  (setq dired-recursive-copies 'always)
+  (setq dired-recursive-deletes 'always)
+  (setq delete-by-moving-to-trash t)
+  (setq dired-dwim-target t)
+  (setq dired-kill-when-opening-new-dired-buffer t))
+
+(use-package savehist
+  :ensure nil ; it is built-in
+  :hook (after-init . savehist-mode))
+
 ;; Doom Bar
 (use-package doom-modeline
   :ensure t
@@ -90,37 +107,25 @@
      orderless-regexp)))
 
 ;; Package for interacting with language servers
-(use-package lsp-mode
-  :commands lsp
-  :config
-  (setq lsp-prefer-flymake nil
-	lsp-headerline-breadcrumb-mode nil))
+(use-package lsp-mode)
 
 ;; Completion suggestions
-(use-package company
-  :after lsp-mode
-  :hook (lsp-mode . company-mode)
-  :bind (:map company-active-map
-              ("<tab>" . company-complete-selection))
-  (:map lsp-mode-map
-        ("<tab>" . company-indent-or-complete-common))
-  (("C-." . company-complete))
-  :custom
-  (company-minimum-prefix-length 1)
-  (company-idle-delay 0.0)
-  (company-dabbrev-downcase nil)
-  (company-show-numbers t)
-  (company-tooltip-limit 10)
+(use-package corfu
+  :ensure t
+  :hook (after-init . global-corfu-mode)
+  :bind (:map corfu-map ("<tab>" . corfu-complete))
   :config
-  ;; use numbers 0-9 to select company completion candidates
-  (let ((map company-active-map))
-    (mapc (lambda (x) (define-key map (format "%d" x)
-				  `(lambda () (interactive) (company-complete-number ,x))))
-          (number-sequence 0 9))))
+  (setq tab-always-indent 'complete)
+  (setq corfu-preview-current nil)
+  (setq corfu-min-width 20)
 
-;;company front-end and icons
-(use-package company-box
-  :hook (company-mode . company-box-mode))
+  (setq corfu-popupinfo-delay '(1.25 . 0.5))
+  (corfu-popupinfo-mode 1) ; shows documentation after `corfu-popupinfo-delay'
+
+  ;; Sort by input history (no need to modify `corfu-sort-function').
+  (with-eval-after-load 'savehist
+    (corfu-history-mode 1)
+    (add-to-list 'savehist-additional-variables 'corfu-history)))
 
 (use-package flycheck
   :config
@@ -177,6 +182,8 @@
   :hook
   (dired-mode . nerd-icons-dired-mode))
 
+(use-package w3m)
+
 ;; For synonyms
 (use-package synosaurus
   :ensure t
@@ -213,8 +220,6 @@
 	 ("C-c s d" . org-super-links-quick-insert-drawer-link)
          ("C-c s s" . org-super-links-store-link)
          ("C-c s i" . org-super-links-insert-link)))
-
-(use-package w3m)
 
 (use-package poetry
   :vc (:url "https://github.com/subsevenx/poetry.el" :branch "main"))
