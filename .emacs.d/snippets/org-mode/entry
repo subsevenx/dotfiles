@@ -8,5 +8,5 @@
 :LOCATION: ${1:Home}
 :MOOD: ${2:$$(yas-choose-value '("Great" "Good" "Okay" "Bad" "Awful"))}
 :END:
-
 $0
+
