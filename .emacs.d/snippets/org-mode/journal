@@ -2,8 +2,7 @@
 # name: Journal Template
 # key: journal
 # --
-#+TITLE: Journal Entry- `(format-time-string "%Y-%m-%d (%A)")`
-
+#+TITLE: Journal Entry for: `(format-time-string "%Y-%m-%d (%A)")`
 :PROPERTIES:
 :ID: `(org-id-new)`
 :END:

@@ -1,7 +1,12 @@
 # -*- mode: snippet -*-
 # name: Journal Entry
 # key: entry
+# expand-env: ((yas-indent-line nil))
 # --
-** `(format-time-string "%H:%M:%S")`
+** Log Entry =@= <`(format-time-string "%Y-%m-%d %a %H:%M:%S")`>
+:PROPERTIES:
+:LOCATION: ${1:Home}
+:MOOD: ${2:$$(yas-choose-value '("Great" "Good" "Okay" "Bad" "Awful"))}
+:END:
 
 $0
