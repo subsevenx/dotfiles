@@ -6,8 +6,7 @@
 ;; Fonts:
 (set-face-attribute 'default nil :font "Fira Code" :height 165)
 
-;; Set the fixed pitch face
-(set-face-attribute 'fixed-pitch nil :font "Fira Code" :height 165)
+;; Set font "Fira Code" :height 165)
 
 ;; Set the variable pitch face
 (set-face-attribute 'variable-pitch nil :font "Droid Sans" :height 165 :weight 'regular)
@@ -35,7 +34,7 @@
    (eval `(defadvice ,command (after indent-region activate)
             (and (not current-prefix-arg)
                  (member major-mode '(emacs-lisp-mode lisp-mode
-                                                      clojure-mode    scheme-mode
+                                                      clojure-mode    scheme-mode    markdown-mode
                                                       haskell-mode    ruby-mode
                                                       rspec-mode      python-mode
                                                       c-mode          c++-mode
