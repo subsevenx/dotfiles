@@ -152,9 +152,10 @@
 
 (use-package yasnippet
   :config
-
   (setq yas-snippet-dirs
-	'("~/.emacs.d/snippets")))
+	'("~/.emacs.d/snippets"))
+	(yas-reload-all)
+	(add-hook 'org-mode-hook #'yas-minor-mode))
 
 ;; Better help menus
 (use-package helpful
