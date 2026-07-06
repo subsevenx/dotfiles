@@ -102,7 +102,7 @@ nodelatest() {
 }
 
 gen_seed() {
-    date +%s%N | cut -b10-19
+    date +%s%N | cut -b10-19;
 }
 
 get_salt() {
