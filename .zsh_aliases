@@ -104,3 +104,7 @@ nodelatest() {
 gen_seed() {
     date +%s%N | cut -b10-19
 }
+
+get_salt() {
+    openssl rand -hex 32;
+}
